@@ -17,7 +17,7 @@ def do_setup():
           download_url="",
           description="Patch log statements that use greedy string interpolation.",
           entry_points={
-              "console_scripts": ["gxlog=logfix.main:main","gxlint=logfix.linter:main"]
+              "console_scripts": ["logfix=logfix.main:main","loglint=logfix.linter:main"]
           },
           keywords="log logging lazy interpolation python",
           license="MIT",

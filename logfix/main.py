@@ -26,7 +26,7 @@ def run(directory: str):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="gxlog",
+        prog="logfix",
         description="Patch greedy string interpolation in Galaxy.",
         epilog="Copyright 2023 The Galayx Project (https://galaxyproject.org)",
     )
