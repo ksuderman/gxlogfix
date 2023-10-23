@@ -17,10 +17,10 @@ def do_setup():
           download_url="",
           description="Patch log statements that use greedy string interpolation.",
           entry_points={
-              "console_scripts": ["gxlog=logpatch.main:main","gxlint=logpatch.linter:main"]
+              "console_scripts": ["gxlog=logfix.main:main","gxlint=logfix.linter:main"]
           },
           keywords="log logging lazy interpolation python",
-          license="Apache License v2",
+          license="MIT",
           classifiers=[
               "Development Status :: 3 - Alpha",
               "Natural Language :: English",
