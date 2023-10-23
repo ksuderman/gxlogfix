@@ -126,7 +126,7 @@ def get_patch(source: str, path: str) -> dict:
             if is_str_format(arg):
                 if isinstance(arg.func.value, ast.Constant) and len(arg.keywords) == 0:
                     # We only handle cases where the LHS is a literal string
-                    # constant with no keywork substitutions.
+                    # constant with no keyword substitutions.
                     format_string = re.sub(
                         r"{\s*}",
                         "%s",
@@ -139,16 +139,11 @@ def get_patch(source: str, path: str) -> dict:
                         node.args = list()
                         node.args.append(ast.Constant(format_string))
                         node.args.extend(arg.args)
-                        # quote = '"'
-                        # if quote in format_string:
-                        #     quote = "'"
-                        # args = ", ".join([ast.unparse(a) for a in arg.args])
                         patch = Patch(
                             node.lineno,
                             node.end_lineno,
                             node.col_offset,
                             ast.unparse(node)
-                            #f"{method_call}({quote}{format_string}{quote}, {args})",
                         )
                         patches[patch.line] = patch
                 else:
@@ -157,27 +152,11 @@ def get_patch(source: str, path: str) -> dict:
                 node.args = list()
                 node.args.append(arg.left)
                 if isinstance(arg.right, ast.Tuple):
-                    # args = ", ".join([ast.unparse(item) for item in arg.right.elts])
                     node.args.extend(arg.right.elts)
                 else:
-                    # args = ast.unparse(arg.right)
                     node.args.append(arg.right)
-                # if isinstance(arg.left, ast.Name):
-                #     value = arg.left.id
-                # elif isinstance(arg.left, ast.Constant):
-                #     if '"' in arg.left.value:
-                #         value = f"'{arg.left.value}'"
-                #     else:
-                #         value = f'"{arg.left.value}"'
-                # else:
-                #     skip(path, node)
-                #     continue
                 patch = Patch(
-                    node.lineno,
-                    node.end_lineno,
-                    node.col_offset,
-                    ast.unparse(node)
-                    #f"{method_call}({value}, {args})",
+                    node.lineno, node.end_lineno, node.col_offset, ast.unparse(node)
                 )
                 patches[patch.line] = patch
             elif isinstance(arg, ast.JoinedStr):
@@ -198,24 +177,9 @@ def get_patch(source: str, path: str) -> dict:
                         raise Exception(f"Unknown value: {v} type: {type(v)}")
                 node.args.append(ast.Constant(format_string))
                 node.args.extend(args)
-                # quote = '"'
-                # if quote in format_string:
-                #     quote = "'"
-                # if len(args) == 0:
-                #     patch = Patch(
-                #         node.lineno,
-                #         node.end_lineno,
-                #         node.col_offset,
-                #         f"{method_call}({quote}{format_string}{quote})",
-                #     )
-                # else:
-                #     patch = Patch(
-                #         node.lineno,
-                #         node.end_lineno,
-                #         node.col_offset,
-                #         f"{method_call}({quote}{format_string}{quote}, {', '.join(args)})",
-                #     )
-                patch = Patch(node.lineno, node.end_lineno, node.col_offset, ast.unparse(node))
+                patch = Patch(
+                    node.lineno, node.end_lineno, node.col_offset, ast.unparse(node)
+                )
                 patches[patch.line] = patch
     return patches
 
