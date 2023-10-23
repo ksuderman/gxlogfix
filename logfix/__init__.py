@@ -136,69 +136,86 @@ def get_patch(source: str, path: str) -> dict:
                         # There is some sort of funky formatting going on.
                         skip(path, node)
                     else:
-                        quote = '"'
-                        if quote in format_string:
-                            quote = "'"
-                        args = ", ".join([ast.unparse(a) for a in arg.args])
+                        node.args = list()
+                        node.args.append(ast.Constant(format_string))
+                        node.args.extend(arg.args)
+                        # quote = '"'
+                        # if quote in format_string:
+                        #     quote = "'"
+                        # args = ", ".join([ast.unparse(a) for a in arg.args])
                         patch = Patch(
                             node.lineno,
                             node.end_lineno,
                             node.col_offset,
-                            f"{method_call}({quote}{format_string}{quote}, {args})",
+                            ast.unparse(node)
+                            #f"{method_call}({quote}{format_string}{quote}, {args})",
                         )
                         patches[patch.line] = patch
                 else:
                     skip(path, node)
             elif isinstance(arg, ast.BinOp) and isinstance(arg.op, ast.Mod):
+                node.args = list()
+                node.args.append(arg.left)
                 if isinstance(arg.right, ast.Tuple):
-                    args = ", ".join([ast.unparse(item) for item in arg.right.elts])
+                    # args = ", ".join([ast.unparse(item) for item in arg.right.elts])
+                    node.args.extend(arg.right.elts)
                 else:
-                    args = ast.unparse(arg.right)
-                if isinstance(arg.left, ast.Name):
-                    value = arg.left.id
-                elif isinstance(arg.left, ast.Constant):
-                    if '"' in arg.left.value:
-                        value = f"'{arg.left.value}'"
-                    else:
-                        value = f'"{arg.left.value}"'
-                else:
-                    skip(path, node)
-                    continue
+                    # args = ast.unparse(arg.right)
+                    node.args.append(arg.right)
+                # if isinstance(arg.left, ast.Name):
+                #     value = arg.left.id
+                # elif isinstance(arg.left, ast.Constant):
+                #     if '"' in arg.left.value:
+                #         value = f"'{arg.left.value}'"
+                #     else:
+                #         value = f'"{arg.left.value}"'
+                # else:
+                #     skip(path, node)
+                #     continue
                 patch = Patch(
                     node.lineno,
                     node.end_lineno,
                     node.col_offset,
-                    f"{method_call}({value}, {args})",
+                    ast.unparse(node)
+                    #f"{method_call}({value}, {args})",
                 )
                 patches[patch.line] = patch
             elif isinstance(arg, ast.JoinedStr):
+                node.args = list()
                 args = []
                 format_string = ""
                 for v in arg.values:
                     if isinstance(v, ast.FormattedValue):
-                        args.append(ast.unparse(v.value))
+                        # args.append(ast.unparse(v.value))
+                        if isinstance(v, ast.Name):
+                            args.append(v.id)
+                        else:
+                            args.append(v.value)
                         format_string += get_format_spec(v)
                     elif isinstance(v, ast.Constant):
                         format_string += v.value
                     else:
                         raise Exception(f"Unknown value: {v} type: {type(v)}")
-                quote = '"'
-                if quote in format_string:
-                    quote = "'"
-                if len(args) == 0:
-                    patch = Patch(
-                        node.lineno,
-                        node.end_lineno,
-                        node.col_offset,
-                        f"{method_call}({quote}{format_string}{quote})",
-                    )
-                else:
-                    patch = Patch(
-                        node.lineno,
-                        node.end_lineno,
-                        node.col_offset,
-                        f"{method_call}({quote}{format_string}{quote}, {', '.join(args)})",
-                    )
+                node.args.append(ast.Constant(format_string))
+                node.args.extend(args)
+                # quote = '"'
+                # if quote in format_string:
+                #     quote = "'"
+                # if len(args) == 0:
+                #     patch = Patch(
+                #         node.lineno,
+                #         node.end_lineno,
+                #         node.col_offset,
+                #         f"{method_call}({quote}{format_string}{quote})",
+                #     )
+                # else:
+                #     patch = Patch(
+                #         node.lineno,
+                #         node.end_lineno,
+                #         node.col_offset,
+                #         f"{method_call}({quote}{format_string}{quote}, {', '.join(args)})",
+                #     )
+                patch = Patch(node.lineno, node.end_lineno, node.col_offset, ast.unparse(node))
                 patches[patch.line] = patch
     return patches
 
