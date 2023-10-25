@@ -2,7 +2,7 @@ import ast
 import re
 
 LOGGER_NAMES = ["log", "logger", "logging"]
-LOGGER_METHODS = ["debug", "info", "warn", "warning", "error", "critical"]
+LOGGER_METHODS = ["trace", "debug", "info", "warn", "warning", "error", "critical", "exception"]
 
 
 class Patch:
