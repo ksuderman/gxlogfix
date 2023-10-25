@@ -13,7 +13,6 @@ def run(directory: str):
         for file in files:
             if file.endswith(".py"):
                 files_checked += 1
-                print(f"{files_checked:04} {file}")
                 n = patch_file(f"{root}/{file}")
                 if n > 0:
                     files_patched += 1
