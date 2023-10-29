@@ -160,26 +160,27 @@ def get_patch(source: str, path: str) -> dict:
                 )
                 patches[patch.line] = patch
             elif isinstance(arg, ast.JoinedStr):
-                node.args = list()
                 args = []
                 format_string = ""
                 for v in arg.values:
                     if isinstance(v, ast.FormattedValue):
                         # The value will consist of a variable name or constant
                         # and possibly a format specifier
-                        if isinstance(v, ast.Name):
-                            args.append(v.id)
-                        elif isinstance(v, ast.Constant):
-                            args.append(v.value)
-                        else:
-                            skip(path, node)
-                            continue
+                        # if isinstance(v.value, ast.Name):
+                        #     args.append(v.value)
+                        # elif isinstance(v, ast.Constant):
+                        #     args.append(v.value)
+                        # else:
+                        #     skip(path, node)
+                        #     continue
+                        args.append(v.value)
                         format_string += get_format_spec(v)
                     elif isinstance(v, ast.Constant):
                         format_string += v.value
                     else:
                         # TODO: Should skip() here?
                         raise Exception(f"Unknown value: {v} type: {type(v)}")
+                node.args = list()
                 node.args.append(ast.Constant(format_string))
                 node.args.extend(args)
                 patch = Patch(
