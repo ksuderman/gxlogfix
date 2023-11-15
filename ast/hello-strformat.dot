@@ -1,0 +1,17 @@
+digraph AST {
+	graph [label="log.debug(\"Hello {}\".format(world))" labelloc=t]
+	node [shape=record]
+	node_1 [label="ast.Call"]
+	node_2 [label="{func|log.debug}"]
+	node_3 [label="args: list"]
+	node_1 -> node_2
+	node_1 -> node_3
+	node_4 [label="ast.Call"]
+	node_5 [label="{func|Hello \{\}.format}"]
+	node_6 [label="args: list"]
+	node_4 -> node_5
+	node_4 -> node_6
+	node_7 [label="{ast.Name|world}"]
+	node_6 -> node_7
+	node_3 -> node_4
+}
