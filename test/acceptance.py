@@ -13,7 +13,7 @@ log.propagate = False
 log.addHandler(handler)
 """
 
-things_that_should_be_numbers = """attempts
+names_that_look_like_numbers = """attempts
 count
 errno
 galaxy_job_id
@@ -21,6 +21,7 @@ i
 id
 index
 job_id
+len
 lines
 pid
 port
@@ -35,9 +36,8 @@ tries""".splitlines(
 )
 
 
-def it_looks_numberic(name: str) -> bool:
-    # for x in ['lines', 'id', 'diff', 'count', 'index', 'port', 'size']:
-    for x in things_that_should_be_numbers:
+def it_looks_like_a_number(name: str) -> bool:
+    for x in names_that_look_like_numbers:
         if x in name:
             return True
     return False
@@ -45,7 +45,7 @@ def it_looks_numberic(name: str) -> bool:
 
 class TestHandler(logging.StreamHandler):
     """
-    A custom handler we will add to the logger to store the line that was
+    A custom handler we will add to the logger to save the line that was
     logged in a public variable.
     """
     def __init__(self):
@@ -89,7 +89,7 @@ class Expando:
         if self.verbose:
             print(f"Calling expando {self.value} with {type(args)} len {len(args)}")
         # a = ','.join(args)
-        if it_looks_numberic(self.value):
+        if it_looks_like_a_number(self.value):
             return 42
         return self.value + f"({args})"
 
@@ -124,8 +124,9 @@ def collect_name(node: ast.AST):
 
 
 def add_type(attr: ast.AST, mock: dict):
-    segments = collect_name(attr)
-    name = segments[0]
+    # segments = collect_name(attr)
+    # name = segments[0]
+    name = get_base_name(attr)
     # mock[name] = Expando(name)
     update_mock(mock, name)
 
@@ -175,6 +176,7 @@ def get_base_name(node: ast.AST) -> str:
         node = node.value
     if isinstance(node, ast.Name):
         return node.id
+    # I don't think this should ever happen, but we check just in case.
     if isinstance(node, ast.Constant):
         return node.value
     return node.value.id
@@ -226,18 +228,23 @@ def create_mock(node: ast.AST) -> dict:
     # Add a few names for convenience
     mock["full_command"] = ["rm", "-rf", ".*"]
     mock["cmd"] = "ls"
-    mock["qacct"] = {"exit_status": 42}
+    mock["qacct"] = list() #{"exit_status": 42}
     mock["self"] = Expando("self")
     mock["rows"] = list()
     mock["kwargs"] = dict()
     mock["sum"] = lambda x: 42
+    mock['e'] = Expando('e')
+    mock['ret_allow_action'] = list()
+    mock['exc_info'] = 'exc_info'
+    mock['message'] = '%s %s %s %s'
+    # mock['obj'] = Expando()
     # Add variable names used as format string
     mock["INSTANCE_ID_INVALID_MESSAGE"] = "Instance id %s is invalid"
-    mock["LOAD FAILURE ERROR"] = "Failure loading %s %s"
+    mock["LOAD_FAILURE_ERROR"] = "Failure loading %s"
 
     for arg in node.args[1:]:
         if isinstance(arg, ast.Name):
-            if it_looks_numberic(arg.id):
+            if it_looks_like_a_number(arg.id):
                 mock[arg.id] = 42
             else:
                 mock[arg.id] = arg.id
@@ -309,12 +316,13 @@ def test_create_mock():
 
 
 passed = 0
+skipped = list()
 failed = list()
 errored = list()
 
 
 def test_patch(filepath: str, patches: dict, source: str):
-    global passed, failed, errored
+    global passed, failed, errored, skipped
     if len(patches) == 0:
         return
     lines = source.splitlines(keepends=False)
@@ -323,22 +331,18 @@ def test_patch(filepath: str, patches: dict, source: str):
         patch = patches[line_no]
         original = ""
         for i in range(patch.line, patch.end_line + 1):
-            # print(f"{i:04d}: - {lines[i-1]}")
             original += lines[i - 1].lstrip() + "\n"
-        # print(f"{patch.line:04d}: + {patch.render()}")
         updated = patch.render().lstrip()
-        # print(original)
-        # print(updated)
         updated_tree = parse(updated)
         try:
             mock_data = create_mock(updated_tree)
         except:
             print(f"Unable to create mock for {original}", end=None)
+            skipped.append(original)
             continue
         mock_data["handler"] = handler
         try:
             exec(SETUP + updated, mock_data)
-            # print('log line', handler.line)
             updated_output = handler.line
             exec(SETUP + original, mock_data)
             original_output = handler.line
@@ -352,7 +356,6 @@ def test_patch(filepath: str, patches: dict, source: str):
             print(f"Error processing {original}", end=None)
             print(e)
             errored.append((original, e))
-        # return
 
 
 def run(directory: str):
@@ -364,9 +367,14 @@ def run(directory: str):
                     source = f.read()
                 patches = get_patch(source, filepath)
                 test_patch(filepath, patches, source)
-    print(f"Passed: {passed}")
-    print(f"Failed: {len(failed)}")
-    print(f"Errors: {len(errored)}")
+    print(f"Passed : {passed}")
+    print(f"Failed : {len(failed)}")
+    print(f"Skipped: {len(skipped)}")
+    print(f"Errors : {len(errored)}")
+    print("Skipped")
+    for skip in skipped:
+        print(ast.unparse(ast.parse(skip)))
+    print("Errors")
     for error in errored:
         code = error[0].rstrip()
         print(ast.unparse(ast.parse(code)) + f"\t# {error[1]}")
@@ -377,7 +385,7 @@ def run(directory: str):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="gxlogtest",
+        prog="accept",
         description="Test the outputs of the patches that would be applied",
         epilog="Copyright 2023 The Galaxy Project (https://galaxyproject.org)\n",
     )
