@@ -10,7 +10,7 @@ from setuptools import setup, find_packages
 def do_setup():
     """Execute the setup thanks to setuptools."""
     setup(name="log-patch",
-          version="0.3.0",
+          version="0.4.0",
           author="Keith Suderman",
           author_email="keithsuderman@gmail.com",
           url="",
