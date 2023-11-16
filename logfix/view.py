@@ -116,6 +116,10 @@ def render_fstring(G, node: ast.JoinedStr):
                 fspec = 'None'
             else:
                 fspec = get_format_spec(part)
+                if part.format_spec is None:
+                    fspec = 'None'
+                else:
+                    fspec = part.format_spec.values[0].value
             # if part.format_spec is None:
             #     fspec = "%s"
             # else:
