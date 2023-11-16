@@ -1,10 +1,10 @@
 ../galaxy/lib/galaxy/queue_worker.py
-0042: -     log.info(f"Queuing {'sync' if get_response else 'async'} task {task} for {app.config.server_name}.")
-0042: +     log.info('Queuing %s task %s for %s.', 'sync' if get_response else 'async', task, app.config.server_name)
-0060: -     log.info(f"Sending {task} control task.")
-0060: +     log.info('Sending %s control task.', task)
-0154: -     log.debug(f"Executing reload tool task for {tool_id}")
-0154: +     log.debug('Executing reload tool task for %s', tool_id)
+0041: -     log.info(f"Queuing {'sync' if get_response else 'async'} task {task} for {app.config.server_name}.")
+0041: +     log.info('Queuing %s task %s for %s.', 'sync' if get_response else 'async', task, app.config.server_name)
+0059: -     log.info(f"Sending {task} control task.")
+0059: +     log.info('Sending %s control task.', task)
+0153: -     log.debug(f"Executing reload tool task for {tool_id}")
+0153: +     log.debug('Executing reload tool task for %s', tool_id)
 0209: -     log.debug(f"Executing display application reload task for {display_application_ids}")
 0209: +     log.debug('Executing display application reload task for %s', display_application_ids)
 0226: -             log.error(f"Recalculate user disk usage task failed, user {user_id} not found")
@@ -15,22 +15,22 @@
 0408: +             log.warning('Received a malformed task message:\n%s', body)
 
 ../galaxy/lib/galaxy/app.py
-0184: -                 log.exception(f"Failed to shutdown {what} cleanly")
-0184: +                 log.exception('Failed to shutdown %s cleanly', what)
-0462: -             log.info(f"Install database using its own connection {install_db_url}")
-0462: +             log.info('Install database using its own connection %s', install_db_url)
-0492: -                 log.info("Waiting for database: attempt %d of %d" % (i, attempts))
-0492: +                 log.info('Waiting for database: attempt %d of %d', i, attempts)
-0809: -         log.info(f"Galaxy app startup finished {startup_timer}")
-0809: +         log.info('Galaxy app startup finished %s', startup_timer)
+0173: -                 log.exception(f"Failed to shutdown {what} cleanly")
+0173: +                 log.exception('Failed to shutdown %s cleanly', what)
+0451: -             log.info(f"Install database using its own connection {install_db_url}")
+0451: +             log.info('Install database using its own connection %s', install_db_url)
+0481: -                 log.info("Waiting for database: attempt %d of %d" % (i, attempts))
+0481: +                 log.info('Waiting for database: attempt %d of %d', i, attempts)
+0777: -         log.info(f"Galaxy app startup finished {startup_timer}")
+0777: +         log.info('Galaxy app startup finished %s', startup_timer)
 
 ../galaxy/lib/galaxy/visualization/plugins/plugin.py
 0142: -             log.debug(f"Visualization has no static path: {path}.")
 0142: +             log.debug('Visualization has no static path: %s.', path)
 
 ../galaxy/lib/galaxy/webapps/galaxy/api/users.py
-1118: -                 log.warning(f"No description specified in the __doc__ string for {filter_name}.")
-1118: +                 log.warning('No description specified in the __doc__ string for %s.', filter_name)
+1000: -                 log.warning(f"No description specified in the __doc__ string for {filter_name}.")
+1000: +                 log.warning('No description specified in the __doc__ string for %s.', filter_name)
 
 ../galaxy/lib/galaxy/webapps/galaxy/api/library_datasets.py
 0285: -                     log.warning(
@@ -48,32 +48,32 @@
 
 Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 117 log.debug(msg_template.format(f'missing required config {missing_arguments}'))
 Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 125 log.debug(msg_template.format(f'invalid config type `{type(config)}`, expect `dict`'))
-Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 161 log.exception(msg_template.format('exception while creating the new cloudauthz record'))
-Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 187 log.debug(msg_template.format(f'cannot decode authz_id `{encoded_authz_id}`'))
-Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 202 log.exception(msg_template.format(f'exception while deleting the cloudauthz record with ID: `{encoded_authz_id}`.'))
-Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 257 log.debug(msg_template.format(f'cannot decode authz_id `{encoded_authz_id}`'))
-Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 270 log.exception(msg_template.format(f'exception while updating the cloudauthz record with ID: `{encoded_authz_id}`.'))
-Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 133 log.debug(msg_template.format(f'cannot decode authz_id `{authn_id}`'))
+Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 162 log.exception(msg_template.format('exception while creating the new cloudauthz record'))
+Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 188 log.debug(msg_template.format(f'cannot decode authz_id `{encoded_authz_id}`'))
+Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 203 log.exception(msg_template.format('exception while deleting the cloudauthz record with ID: `{}`.'.format(encoded_authz_id)))
+Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 260 log.debug(msg_template.format(f'cannot decode authz_id `{encoded_authz_id}`'))
+Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 273 log.exception(msg_template.format('exception while updating the cloudauthz record with ID: `{}`.'.format(encoded_authz_id)))
+Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 134 log.debug(msg_template.format(f'cannot decode authz_id `{authn_id}`'))
 ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py
-0145: -                 log.debug(
-0146: -                     "Rejected user `{}`'s request to create cloud authorization because a similar config "
-0147: -                     "already exists.".format(trans.user.id)
-0148: -                 )
-0145: +                 log.debug("Rejected user `%s`'s request to create cloud authorization because a similar config already exists.", trans.user.id)
-0158: -             log.debug(f"Created a new cloudauthz record for the user id `{str(trans.user.id)}` ")
-0158: +             log.debug('Created a new cloudauthz record for the user id `%s` ', str(trans.user.id))
-0195: -             log.debug(f"Deleted a cloudauthz record with id `{authz_id}` for the user id `{str(trans.user.id)}` ")
-0195: +             log.debug('Deleted a cloudauthz record with id `%s` for the user id `%s` ', authz_id, str(trans.user.id))
+0146: -                 log.debug(
+0147: -                     "Rejected user `{}`'s request to create cloud authorization because a similar config "
+0148: -                     "already exists.".format(trans.user.id)
+0149: -                 )
+0146: +                 log.debug("Rejected user `%s`'s request to create cloud authorization because a similar config already exists.", trans.user.id)
+0159: -             log.debug(f"Created a new cloudauthz record for the user id `{str(trans.user.id)}` ")
+0159: +             log.debug('Created a new cloudauthz record for the user id `%s` ', str(trans.user.id))
+0196: -             log.debug(f"Deleted a cloudauthz record with id `{authz_id}` for the user id `{str(trans.user.id)}` ")
+0196: +             log.debug('Deleted a cloudauthz record with id `%s` for the user id `%s` ', authz_id, str(trans.user.id))
 
 ../galaxy/lib/galaxy/webapps/galaxy/controllers/user.py
-0159: -         log.debug(f"trans.app.config.auth_config_file: {trans.app.config.auth_config_file}")
-0159: +         log.debug('trans.app.config.auth_config_file: %s', trans.app.config.auth_config_file)
+0158: -         log.debug(f"trans.app.config.auth_config_file: {trans.app.config.auth_config_file}")
+0158: +         log.debug('trans.app.config.auth_config_file: %s', trans.app.config.auth_config_file)
 
 ../galaxy/lib/galaxy/webapps/galaxy/controllers/dataset.py
 0599: -             log.debug(f"Unexpected Keywords passed to display_application: {kwds}")  # route memory?
 0599: +             log.debug('Unexpected Keywords passed to display_application: %s', kwds)
-0821: -                     log.exception(f"Unable to purge dataset ({hda.dataset.id}) on purge of HDA ({hda.id}):")
-0821: +                     log.exception('Unable to purge dataset (%s) on purge of HDA (%s):', hda.dataset.id, hda.id)
+0823: -                     log.exception(f"Unable to purge dataset ({hda.dataset.id}) on purge of HDA ({hda.id}):")
+0823: +                     log.exception('Unable to purge dataset (%s) on purge of HDA (%s):', hda.dataset.id, hda.id)
 
 ../galaxy/lib/galaxy/webapps/galaxy/controllers/async.py
 0046: -         log.debug(f"async dataid -> {data_id}")
@@ -99,22 +99,22 @@ Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 133 log.debug(msg
 0099: +             log.error('Error handling authentication callback from `%s` identity provider for user `%s` login request. Error message: %s', provider, user, kwargs.get('error', 'None'))
 
 ../galaxy/lib/galaxy/webapps/galaxy/controllers/history.py
-0669: -                         log.exception(f"Unable to purge dataset ({hda.dataset.id}) on purge of hda ({hda.id}):")
-0669: +                         log.exception('Unable to purge dataset (%s) on purge of hda (%s):', hda.dataset.id, hda.id)
+0667: -                         log.exception(f"Unable to purge dataset ({hda.dataset.id}) on purge of hda ({hda.id}):")
+0667: +                         log.exception('Unable to purge dataset (%s) on purge of hda (%s):', hda.dataset.id, hda.id)
 
 ../galaxy/lib/galaxy/webapps/galaxy/services/dataset_collections.py
-0281: -             log.exception(
-0282: -                 f"Serializing DatasetCollectionContentsElements failed. Collection is populated: {hdca.collection.populated}"
-0283: -             )
-0281: +             log.exception('Serializing DatasetCollectionContentsElements failed. Collection is populated: %s', hdca.collection.populated)
+0282: -             log.exception(
+0283: -                 f"Serializing DatasetCollectionContentsElements failed. Collection is populated: {hdca.collection.populated}"
+0284: -             )
+0282: +             log.exception('Serializing DatasetCollectionContentsElements failed. Collection is populated: %s', hdca.collection.populated)
 
 ../galaxy/lib/galaxy/webapps/galaxy/services/tools.py
-0122: -             log.debug(f"Not found tool with kwds [{get_kwds}]")
-0122: +             log.debug('Not found tool with kwds [%s]', get_kwds)
-0130: -                 log.warning(
-0131: -                     f'User "{trans.user.email}" attempts to execute tool, but account activation is turned on and user account is not active.'
-0132: -                 )
-0130: +                 log.warning('User "%s" attempts to execute tool, but account activation is turned on and user account is not active.', trans.user.email)
+0119: -             log.debug(f"Not found tool with kwds [{get_kwds}]")
+0119: +             log.debug('Not found tool with kwds [%s]', get_kwds)
+0127: -                 log.warning(
+0128: -                     f'User "{trans.user.email}" attempts to execute tool, but account activation is turned on and user account is not active.'
+0129: -                 )
+0127: +                 log.warning('User "%s" attempts to execute tool, but account activation is turned on and user account is not active.', trans.user.email)
 
 ../galaxy/lib/galaxy/webapps/galaxy/services/library_folders.py
 0184: -                 log.warning(
@@ -131,41 +131,41 @@ Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 133 log.debug(msg
 0216: +                 log.warning('The following roles could not be added to the modify folder permission: %s', str(invalid_modify_roles_names))
 
 ../galaxy/lib/galaxy/webapps/galaxy/services/libraries.py
-0250: -                 log.warning(
-0251: -                     f"The following roles could not be added to the library access permission: {str(invalid_access_roles_names)}"
-0252: -                 )
-0250: +                 log.warning('The following roles could not be added to the library access permission: %s', str(invalid_access_roles_names))
-0265: -                 log.warning(
-0266: -                     f"The following roles could not be added to the add library item permission: {str(invalid_add_roles_names)}"
-0267: -                 )
-0265: +                 log.warning('The following roles could not be added to the add library item permission: %s', str(invalid_add_roles_names))
-0280: -                 log.warning(
-0281: -                     f"The following roles could not be added to the manage library permission: {str(invalid_manage_roles_names)}"
-0282: -                 )
-0280: +                 log.warning('The following roles could not be added to the manage library permission: %s', str(invalid_manage_roles_names))
-0295: -                 log.warning(
-0296: -                     f"The following roles could not be added to the modify library permission: {str(invalid_modify_roles_names)}"
-0297: -                 )
-0295: +                 log.warning('The following roles could not be added to the modify library permission: %s', str(invalid_modify_roles_names))
+0249: -                 log.warning(
+0250: -                     f"The following roles could not be added to the library access permission: {str(invalid_access_roles_names)}"
+0251: -                 )
+0249: +                 log.warning('The following roles could not be added to the library access permission: %s', str(invalid_access_roles_names))
+0264: -                 log.warning(
+0265: -                     f"The following roles could not be added to the add library item permission: {str(invalid_add_roles_names)}"
+0266: -                 )
+0264: +                 log.warning('The following roles could not be added to the add library item permission: %s', str(invalid_add_roles_names))
+0279: -                 log.warning(
+0280: -                     f"The following roles could not be added to the manage library permission: {str(invalid_manage_roles_names)}"
+0281: -                 )
+0279: +                 log.warning('The following roles could not be added to the manage library permission: %s', str(invalid_manage_roles_names))
+0294: -                 log.warning(
+0295: -                     f"The following roles could not be added to the modify library permission: {str(invalid_modify_roles_names)}"
+0296: -                 )
+0294: +                 log.warning('The following roles could not be added to the modify library permission: %s', str(invalid_modify_roles_names))
 
 ../galaxy/lib/galaxy/webapps/galaxy/services/histories.py
-0716: -             log.error(
-0717: -                 f"Trying to archive history [{history_id}] with an export record. "
-0718: -                 f"But the given archive export record [{export_record.id}] does not have the required metadata."
-0719: -             )
-0716: +             log.error('Trying to archive history [%s] with an export record. But the given archive export record [%s] does not have the required metadata.', history_id, export_record.id)
+0717: -             log.error(
+0718: -                 f"Trying to archive history [{history_id}] with an export record. "
+0719: -                 f"But the given archive export record [{export_record.id}] does not have the required metadata."
+0720: -             )
+0717: +             log.error('Trying to archive history [%s] with an export record. But the given archive export record [%s] does not have the required metadata.', history_id, export_record.id)
 
 ../galaxy/lib/galaxy/webapps/base/controller.py
-0489: -         log.debug(f"_copy_hda_to_library_folder: {str((from_hda_id, folder_id, ldda_message))}")
-0489: +         log.debug('_copy_hda_to_library_folder: %s', str((from_hda_id, folder_id, ldda_message)))
-1383: -         log.debug(f"In get_item_tag_assoc with tagged_item {tagged_item}")
-1383: +         log.debug('In get_item_tag_assoc with tagged_item %s', tagged_item)
+0480: -         log.debug(f"_copy_hda_to_library_folder: {str((from_hda_id, folder_id, ldda_message))}")
+0480: +         log.debug('_copy_hda_to_library_folder: %s', str((from_hda_id, folder_id, ldda_message)))
+1422: -         log.debug(f"In get_item_tag_assoc with tagged_item {tagged_item}")
+1422: +         log.debug('In get_item_tag_assoc with tagged_item %s', tagged_item)
 
 ../galaxy/lib/galaxy/webapps/base/webapp.py
-0527: -             log.warning(f"Error setting httponly attribute in cookie '{name}': {e}")
-0527: +             log.warning("Error setting httponly attribute in cookie '%s': %s", name, e)
-0641: -                 log.warning(f"User '{galaxy_session.user.email}' is marked deleted, invalidating session")
-0641: +                 log.warning("User '%s' is marked deleted, invalidating session", galaxy_session.user.email)
+0528: -             log.warning(f"Error setting httponly attribute in cookie '{name}': {e}")
+0528: +             log.warning("Error setting httponly attribute in cookie '%s': %s", name, e)
+0642: -                 log.warning(f"User '{galaxy_session.user.email}' is marked deleted, invalidating session")
+0642: +                 log.warning("User '%s' is marked deleted, invalidating session", galaxy_session.user.email)
 
 ../galaxy/lib/galaxy/tours/_impl.py
 0145: -             log.exception(f"Tour '{tour_id}' could not be loaded, error reading file.")
@@ -193,18 +193,18 @@ Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 133 log.debug(msg
 0194: +             log.debug('Removed the following tools from cache: %s', removed_tool_ids)
 
 ../galaxy/lib/galaxy/tools/__init__.py
-0380: -         log.info(
-0381: -             f"removing all tool tag associations ({str(self.sa_session.scalar(select(func.count(self.app.model.ToolTagAssociation))))})"
-0382: -         )
-0380: +         log.info('removing all tool tag associations (%s)', str(self.sa_session.scalar(select(func.count(self.app.model.ToolTagAssociation)))))
-1333: -                 log.error(f"Problem finding repository dir for tool '{self.id}'")
-1333: +                 log.error("Problem finding repository dir for tool '%s'", self.id)
-1563: -                         log.debug(
-1564: -                             f"Tool with id '{self.id}': declares a conditional test parameter as optional, this is invalid and will be ignored."
-1565: -                         )
-1563: +                         log.debug("Tool with id '%s': declares a conditional test parameter as optional, this is invalid and will be ignored.", self.id)
-1648: -                 log.error(f"Tool with id '{self.id}': Could not find dependency '{name}' of parameter '{param.name}'")
-1648: +                 log.error("Tool with id '%s': Could not find dependency '%s' of parameter '%s'", self.id, name, param.name)
+0365: -         log.info(
+0366: -             f"removing all tool tag associations ({str(self.sa_session.query(self.app.model.ToolTagAssociation).count())})"
+0367: -         )
+0365: +         log.info('removing all tool tag associations (%s)', str(self.sa_session.query(self.app.model.ToolTagAssociation).count()))
+1316: -                 log.error(f"Problem finding repository dir for tool '{self.id}'")
+1316: +                 log.error("Problem finding repository dir for tool '%s'", self.id)
+1546: -                         log.debug(
+1547: -                             f"Tool with id '{self.id}': declares a conditional test parameter as optional, this is invalid and will be ignored."
+1548: -                         )
+1546: +                         log.debug("Tool with id '%s': declares a conditional test parameter as optional, this is invalid and will be ignored.", self.id)
+1631: -                 log.error(f"Tool with id '{self.id}': Could not find dependency '{name}' of parameter '{param.name}'")
+1631: +                 log.error("Tool with id '%s': Could not find dependency '%s' of parameter '%s'", self.id, name, param.name)
 
 ../galaxy/lib/galaxy/tools/test.py
 0082: -         log.exception("Failed to load tool test number [%d] for %s" % (test_index, tool.id))
@@ -253,16 +253,16 @@ Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 133 log.debug(msg
 0233: +         log.debug('Toolbox index of panel %s finished %s', self.panel_view_id, execution_timer)
 
 ../galaxy/lib/galaxy/tools/data_manager/manager.py
-0064: -             log.error(f'There was an error parsing your Data Manager config file "{xml_filename}": {e}')
-0064: +             log.error('There was an error parsing your Data Manager config file "%s": %s', xml_filename, e)
-0068: -             log.error(
-0069: -                 f'A data managers configuration must have a "data_managers" tag as the root. "{root.tag}" is present'
-0070: -             )
-0068: +             log.error('A data managers configuration must have a "data_managers" tag as the root. "%s" is present', root.tag)
-0098: -         log.debug(f"Loaded Data Manager: {data_manager.id}")
-0098: +         log.debug('Loaded Data Manager: %s', data_manager.id)
-0103: -             log.warning(f"A data manager has been defined twice: {data_manager.id} ")
-0103: +             log.warning('A data manager has been defined twice: %s ', data_manager.id)
+0056: -             log.error(f'There was an error parsing your Data Manager config file "{xml_filename}": {e}')
+0056: +             log.error('There was an error parsing your Data Manager config file "%s": %s', xml_filename, e)
+0060: -             log.error(
+0061: -                 f'A data managers configuration must have a "data_managers" tag as the root. "{root.tag}" is present'
+0062: -             )
+0060: +             log.error('A data managers configuration must have a "data_managers" tag as the root. "%s" is present', root.tag)
+0090: -         log.debug(f"Loaded Data Manager: {data_manager.id}")
+0090: +         log.debug('Loaded Data Manager: %s', data_manager.id)
+0095: -             log.warning(f"A data manager has been defined twice: {data_manager.id} ")
+0095: +             log.warning('A data manager has been defined twice: %s ', data_manager.id)
 
 ../galaxy/lib/galaxy/tools/actions/upload.py
 0030: -         log.debug(f"Persisted uploads {persisting_uploads_timer}")
@@ -273,18 +273,18 @@ Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 133 log.debug(msg
 0057: +         log.debug('Checked uploads %s', check_timer)
 
 ../galaxy/lib/galaxy/tools/actions/__init__.py
-0645: -                     log.info(f"Handled collection output named {name} for tool {tool.id} {handle_output_timer}")
-0645: +                     log.info('Handled collection output named %s for tool %s %s', name, tool.id, handle_output_timer)
-0648: -                     log.info(f"Handled output named {name} for tool {tool.id} {handle_output_timer}")
-0648: +                     log.info('Handled output named %s for tool %s %s', name, tool.id, handle_output_timer)
-0710: -         log.info(f"Setup for job {job.log_str()} complete, ready to be enqueued {job_setup_timer}")
-0710: +         log.info('Setup for job %s complete, ready to be enqueued %s', job.log_str(), job_setup_timer)
-0739: -                 log.info(f"Flushed transaction for job {job.log_str()} {job_flush_timer}")
-0739: +                 log.info('Flushed transaction for job %s %s', job.log_str(), job_flush_timer)
-0829: -         log.info(f"Job {job_to_remap.id} input HDA {jtod.dataset.id} remapped to new HDA {jtid.dataset.id}")
-0829: +         log.info('Job %s input HDA %s remapped to new HDA %s', job_to_remap.id, jtod.dataset.id, jtid.dataset.id)
-1124: -             log.debug(f"Tool {tool.id} output {output.name}: dataset output filter ({filter.text}) failed: {e}")
-1124: +             log.debug('Tool %s output %s: dataset output filter (%s) failed: %s', tool.id, output.name, filter.text, e)
+0643: -                     log.info(f"Handled collection output named {name} for tool {tool.id} {handle_output_timer}")
+0643: +                     log.info('Handled collection output named %s for tool %s %s', name, tool.id, handle_output_timer)
+0646: -                     log.info(f"Handled output named {name} for tool {tool.id} {handle_output_timer}")
+0646: +                     log.info('Handled output named %s for tool %s %s', name, tool.id, handle_output_timer)
+0708: -         log.info(f"Setup for job {job.log_str()} complete, ready to be enqueued {job_setup_timer}")
+0708: +         log.info('Setup for job %s complete, ready to be enqueued %s', job.log_str(), job_setup_timer)
+0737: -                 log.info(f"Flushed transaction for job {job.log_str()} {job_flush_timer}")
+0737: +                 log.info('Flushed transaction for job %s %s', job.log_str(), job_flush_timer)
+0827: -         log.info(f"Job {job_to_remap.id} input HDA {jtod.dataset.id} remapped to new HDA {jtid.dataset.id}")
+0827: +         log.info('Job %s input HDA %s remapped to new HDA %s', job_to_remap.id, jtod.dataset.id, jtid.dataset.id)
+1122: -             log.debug(f"Tool {tool.id} output {output.name}: dataset output filter ({filter.text}) failed: {e}")
+1122: +             log.debug('Tool %s output %s: dataset output filter (%s) failed: %s', tool.id, output.name, filter.text, e)
 
 ../galaxy/lib/galaxy/tools/actions/data_manager.py
 0020: -             log.error(f"Got bad return value from DefaultToolAction.execute(): {rval}")
@@ -328,10 +328,10 @@ Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 133 log.debug(msg
 0715: +                         log.warning('The metadata file inferred from key `%s` was deleted!', meta_file_key)
 
 ../galaxy/lib/galaxy/tools/parameters/basic.py
-1887: -                     log.warning(
-1888: -                         f"Datatype class not found for extension '{extension}', which is used in the 'format' attribute of parameter '{self.name}'"
-1889: -                     )
-1887: +                     log.warning("Datatype class not found for extension '%s', which is used in the 'format' attribute of parameter '%s'", extension, self.name)
+1876: -                     log.warning(
+1877: -                         f"Datatype class not found for extension '{extension}', which is used in the 'format' attribute of parameter '{self.name}'"
+1878: -                     )
+1876: +                     log.warning("Datatype class not found for extension '%s', which is used in the 'format' attribute of parameter '%s'", extension, self.name)
 
 ../galaxy/lib/galaxy/tools/parameters/sanitize.py
 0071: -                     log.debug(f"Invalid action tag in valid: {action_elem.tag}")
@@ -386,39 +386,39 @@ Skipping ../galaxy/lib/galaxy/webapps/galaxy/api/cloudauthz.py 133 log.debug(msg
 0395: +         log.warning('Changing ownership of %s %s failed: %s', description, path, galaxy.util.unicodify(e))
 
 ../galaxy/lib/galaxy/util/tool_shed/tool_shed_registry.py
-0046: -                 log.warning(f"Unable to load references to tool sheds defined in file {str(config)}")
-0046: +                 log.warning('Unable to load references to tool sheds defined in file %s', str(config))
-0052: -         log.debug(f"Loading references to tool sheds from {config}")
-0052: +         log.debug('Loading references to tool sheds from %s', config)
-0069: -                     log.debug(f"Loaded reference to tool shed: {name}")
-0069: +                     log.debug('Loaded reference to tool shed: %s', name)
-0073: -                 log.warning(f'Error loading reference to tool shed "{name}", problem: {str(e)}')
-0073: +                 log.warning('Error loading reference to tool shed "%s", problem: %s', name, str(e))
-0088: -             log.debug(f"Invalid url '{str(url)}' received by tool shed registry's url_auth method.")
-0088: +             log.debug("Invalid url '%s' received by tool shed registry's url_auth method.", str(url))
+0040: -                 log.warning(f"Unable to load references to tool sheds defined in file {str(config)}")
+0040: +                 log.warning('Unable to load references to tool sheds defined in file %s', str(config))
+0046: -         log.debug(f"Loading references to tool sheds from {config}")
+0046: +         log.debug('Loading references to tool sheds from %s', config)
+0056: -                     log.debug(f"Loaded reference to tool shed: {name}")
+0056: +                     log.debug('Loaded reference to tool shed: %s', name)
+0060: -                 log.warning(f'Error loading reference to tool shed "{name}", problem: {str(e)}')
+0060: +                 log.warning('Error loading reference to tool shed "%s", problem: %s', name, str(e))
+0075: -             log.debug(f"Invalid url '{str(url)}' received by tool shed registry's url_auth method.")
+0075: +             log.debug("Invalid url '%s' received by tool shed registry's url_auth method.", str(url))
 
-Skipping ../galaxy/lib/galaxy/config/__init__.py 541 log.warning("Paths for the '{0}' option should be relative to '{1}'. To suppress this warning, move '{0}' into '{1}', or set it's value to an absolute path.".format(key, resolves_to))
+Skipping ../galaxy/lib/galaxy/config/__init__.py 540 log.warning("Paths for the '{0}' option should be relative to '{1}'. To suppress this warning, move '{0}' into '{1}', or set it's value to an absolute path.".format(key, resolves_to))
 ../galaxy/lib/galaxy/config/__init__.py
-0296: -             log.warning(f"Configuration option does not exist: '{key}'")
-0296: +             log.warning("Configuration option does not exist: '%s'", key)
-0478: -                 log.warning(f"Option {key} has been deprecated in favor of {new_key}")
-0478: +                 log.warning('Option %s has been deprecated in favor of %s', key, new_key)
-0964: -                     log.warning(
-0965: -                         "The path '%s' for the 'sanitize_allowlist_file' config option is "
-0966: -                         "deprecated and will be no longer checked in a future release. Please consult "
-0967: -                         "the latest version of the sample configuration file." % deprecated
-0968: -                     )
-0964: +                     log.warning("The path '%s' for the 'sanitize_allowlist_file' config option is deprecated and will be no longer checked in a future release. Please consult the latest version of the sample configuration file.", deprecated)
-1112: -                 log.warning(
-1113: -                     f"Config file ({self.user_preferences_extra_conf_path}) could not be found or is malformed."
-1114: -                 )
-1112: +                 log.warning('Config file (%s) could not be found or is malformed.', self.user_preferences_extra_conf_path)
-1346: -                 log.warning(
-1347: -                     f"Config option '{key}' is deprecated and will be removed in a future release.  Please consult the latest version of the sample configuration file."
-1348: -                 )
-1346: +                 log.warning("Config option '%s' is deprecated and will be removed in a future release.  Please consult the latest version of the sample configuration file.", key)
-1394: -                 log.info(f"Reloaded {option}")
-1394: +                 log.info('Reloaded %s', option)
+0295: -             log.warning(f"Configuration option does not exist: '{key}'")
+0295: +             log.warning("Configuration option does not exist: '%s'", key)
+0477: -                 log.warning(f"Option {key} has been deprecated in favor of {new_key}")
+0477: +                 log.warning('Option %s has been deprecated in favor of %s', key, new_key)
+0953: -                     log.warning(
+0954: -                         "The path '%s' for the 'sanitize_allowlist_file' config option is "
+0955: -                         "deprecated and will be no longer checked in a future release. Please consult "
+0956: -                         "the latest version of the sample configuration file." % deprecated
+0957: -                     )
+0953: +                     log.warning("The path '%s' for the 'sanitize_allowlist_file' config option is deprecated and will be no longer checked in a future release. Please consult the latest version of the sample configuration file.", deprecated)
+1101: -                 log.warning(
+1102: -                     f"Config file ({self.user_preferences_extra_conf_path}) could not be found or is malformed."
+1103: -                 )
+1101: +                 log.warning('Config file (%s) could not be found or is malformed.', self.user_preferences_extra_conf_path)
+1335: -                 log.warning(
+1336: -                     f"Config option '{key}' is deprecated and will be removed in a future release.  Please consult the latest version of the sample configuration file."
+1337: -                 )
+1335: +                 log.warning("Config option '%s' is deprecated and will be removed in a future release.  Please consult the latest version of the sample configuration file.", key)
+1383: -                 log.info(f"Reloaded {option}")
+1383: +                 log.info('Reloaded %s', option)
 
 ../galaxy/lib/galaxy/security/object_wrapper.py
 0193: -                 log.warning(f"Unable to create dynamic subclass {wrapped_class_name} for {type(value)}, {value}: {e}")
@@ -477,8 +477,8 @@ Skipping ../galaxy/lib/galaxy/config/__init__.py 541 log.warning("Paths for the 
 0201: +             log.info('Obtained unused port %d', port)
 
 ../galaxy/lib/galaxy/web/framework/middleware/remoteuser.py
-0203: -             log.debug(f"Unable to identify user.  {self.remote_user_header} not found")
-0203: +             log.debug('Unable to identify user.  %s not found', self.remote_user_header)
+0205: -             log.debug(f"Unable to identify user.  {self.remote_user_header} not found")
+0205: +             log.debug('Unable to identify user.  %s not found', self.remote_user_header)
 
 ../galaxy/lib/galaxy/web_stack/handlers.py
 0200: -             log.debug(f"default set to child with id or tag '{rval}'")
@@ -553,10 +553,10 @@ Skipping ../galaxy/lib/galaxy/config/__init__.py 541 log.warning("Paths for the 
 0136: +                         log.error('BLAST XML file %s was empty', f)
 
 ../galaxy/lib/galaxy/datatypes/data.py
-1048: -             log.error(f"Unable to estimate lines in file {dataset.get_file_name()}")
-1048: +             log.error('Unable to estimate lines in file %s', dataset.get_file_name())
-1068: -                 log.error(f"Unable to count lines in file {dataset.get_file_name()}")
-1068: +                 log.error('Unable to count lines in file %s', dataset.get_file_name())
+0996: -             log.error(f"Unable to estimate lines in file {dataset.file_name}")
+0996: +             log.error('Unable to estimate lines in file %s', dataset.file_name)
+1016: -                 log.error(f"Unable to count lines in file {dataset.file_name}")
+1016: +                 log.error('Unable to count lines in file %s', dataset.file_name)
 
 ../galaxy/lib/galaxy/datatypes/dataproviders/external.py
 0061: -             log.info(f"opened subrocess ({str(command_list)}), PID: {str(popen.pid)}")
@@ -600,18 +600,18 @@ Skipping ../galaxy/lib/galaxy/config/__init__.py 541 log.warning("Paths for the 
 0393: +                     log.debug('Failed to send the dataset `%s` per user `%s` request to cloud, %s', object_label, trans.user.id, err_msg)
 
 ../galaxy/lib/galaxy/managers/datasets.py
-0117: -                         log.exception(f"Unable to purge dataset ({dataset.id})")
-0117: +                         log.exception('Unable to purge dataset (%s)', dataset.id)
-0175: -                 log.warning(
-0176: -                     f"Re-calculated dataset hash for dataset [{dataset.id}] and new hash value [{calculated_hash_value}] does not equal previous hash value [{old_hash_value}]."
-0177: -                 )
-0175: +                 log.warning('Re-calculated dataset hash for dataset [%s] and new hash value [%s] does not equal previous hash value [%s].', dataset.id, calculated_hash_value, old_hash_value)
+0111: -                         log.exception(f"Unable to purge dataset ({dataset.id})")
+0111: +                         log.exception('Unable to purge dataset (%s)', dataset.id)
+0177: -                 log.warning(
+0178: -                     f"Re-calculated dataset hash for dataset [{dataset.id}] and new hash value [{calculated_hash_value}] does not equal previous hash value [{old_hash_value}]."
+0179: -                 )
+0177: +                 log.warning('Re-calculated dataset hash for dataset [%s] and new hash value [%s] does not equal previous hash value [%s].', dataset.id, calculated_hash_value, old_hash_value)
 
 ../galaxy/lib/galaxy/managers/histories.py
-0362: -                         log.warning(f"Unable to make dataset with id: {dataset.id} public")
-0362: +                         log.warning('Unable to make dataset with id: %s public', dataset.id)
-0364: -                     log.warning(f"User without permissions tried to make dataset with id: {dataset.id} public")
-0364: +                     log.warning('User without permissions tried to make dataset with id: %s public', dataset.id)
+0367: -                         log.warning(f"Unable to make dataset with id: {dataset.id} public")
+0367: +                         log.warning('Unable to make dataset with id: %s public', dataset.id)
+0369: -                     log.warning(f"User without permissions tried to make dataset with id: {dataset.id} public")
+0369: +                     log.warning('User without permissions tried to make dataset with id: %s public', dataset.id)
 
 ../galaxy/lib/galaxy/managers/collections.py
 0252: -             log.debug("Created collection with %d elements" % (len(dataset_collection_instance.collection.elements)))
@@ -622,12 +622,12 @@ Skipping ../galaxy/lib/galaxy/config/__init__.py 541 log.warning("Paths for the 
 0423: +                     log.info('Cannot delete HistoryDatasetAssociation %s, HistoryDatasetAssociation has no associated History, cannot verify owner', dataset.id)
 
 ../galaxy/lib/galaxy/managers/remote_files.py
-0097: -             log.warning(f"Problem listing file source path {file_source_path}", exc_info=True)
-0097: +             log.warning('Problem listing file source path %s', file_source_path, exc_info=True)
+0085: -             log.warning(f"Problem listing file source path {file_source_path}", exc_info=True)
+0085: +             log.warning('Problem listing file source path %s', file_source_path, exc_info=True)
 
 ../galaxy/lib/galaxy/managers/workflows.py
-1304: -                     log.info(f"failed to find input {input_name} for get_step_map_over")
-1304: +                     log.info('failed to find input %s for get_step_map_over', input_name)
+1256: -                     log.info(f"failed to find input {input_name} for get_step_map_over")
+1256: +                     log.info('failed to find input %s for get_step_map_over', input_name)
 
 ../galaxy/lib/galaxy/managers/licenses.py
 0094: -             log.warning(f"Unknown license URI encountered [{uri}]")
@@ -638,8 +638,8 @@ Skipping ../galaxy/lib/galaxy/config/__init__.py 541 log.warning("Paths for the 
 0182: +         log.exception('Invalid %s id ( %s ) specified.', class_name, id)
 
 ../galaxy/lib/galaxy/job_execution/output_collect.py
-0720: -         log.warning(f"({galaxy_id_tag}) Exit code '{exit_code_str}' invalid. Using 0.")
-0720: +         log.warning("(%s) Exit code '%s' invalid. Using 0.", galaxy_id_tag, exit_code_str)
+0716: -         log.warning(f"({galaxy_id_tag}) Exit code '{exit_code_str}' invalid. Using 0.")
+0716: +         log.warning("(%s) Exit code '%s' invalid. Using 0.", galaxy_id_tag, exit_code_str)
 
 ../galaxy/lib/galaxy/job_execution/actions/post.py
 0396: -                     log.debug(f"No job found yet for wfi_step {wfi_step}, (step {wfi_step.workflow_step})")
@@ -672,67 +672,66 @@ Skipping ../galaxy/lib/galaxy/config/__init__.py 541 log.warning("Paths for the 
 0298: +                     log.debug('Idle connection with id %s was created more than %s seconds ago. Releasing the connection.', id(conn), refresh_time)
 
 ../galaxy/lib/galaxy/objectstore/__init__.py
-0837: -             log.critical(f"{self.__get_filename(obj, **kwargs)} delete error {ex}")
-0837: +             log.critical('%s delete error %s', self.__get_filename(obj, **kwargs), ex)
-0887: -                 log.critical(f"Error copying {file_name} to {self.__get_filename(obj, **kwargs)}: {ex}")
-0887: +                 log.critical('Error copying %s to %s: %s', file_name, self.__get_filename(obj, **kwargs), ex)
-1236: -                     log.warning(
-1237: -                         f"{obj.__class__.__name__} object with ID {obj.id} found in backend object store with ID {id}"
-1238: -                     )
-1236: +                     log.warning('%s object with ID %s found in backend object store with ID %s', obj.__class__.__name__, obj.id, id)
+0829: -             log.critical(f"{self.__get_filename(obj, **kwargs)} delete error {ex}")
+0829: +             log.critical('%s delete error %s', self.__get_filename(obj, **kwargs), ex)
+0879: -                 log.critical(f"Error copying {file_name} to {self.__get_filename(obj, **kwargs)}: {ex}")
+0879: +                 log.critical('Error copying %s to %s: %s', file_name, self.__get_filename(obj, **kwargs), ex)
+1228: -                     log.warning(
+1229: -                         f"{obj.__class__.__name__} object with ID {obj.id} found in backend object store with ID {id}"
+1230: -                     )
+1228: +                     log.warning('%s object with ID %s found in backend object store with ID %s', obj.__class__.__name__, obj.id, id)
 
-Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble copying source file "{source}" to cache "{cache}"'.format(source=source_path, cache=cache_path))
+Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 328 log.warning('Could not get size of file {path} in local cache,will try Pithos. Error: {err}'.format(path=path, err=ex))
+Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 429 log.exception('Trouble copying source file "{source}" to cache "{cache}"'.format(source=source_path, cache=cache_path))
 ../galaxy/lib/galaxy/objectstore/pithos.py
 0171: -             log.warning(f"extra_dir is not normalized: {extra_dir}")
 0171: +             log.warning('extra_dir is not normalized: %s', extra_dir)
 0177: -                 log.warning(f"alt_name would locate path outside dir: {alt_name}")
 0177: +                 log.warning('alt_name would locate path outside dir: %s', alt_name)
-0328: -                 log.warning(f"Could not get size of file {path} in local cache," f"will try Pithos. Error: {ex}")
-0328: +                 log.warning('Could not get size of file %s in local cache,will try Pithos. Error: %s', path, ex)
-0355: -                 log.debug(f"On Pithos: delete -r {path}/")
-0355: +                 log.debug('On Pithos: delete -r %s/', path)
-0362: -             log.exception(f"{self._get_filename(obj, **kwargs)} delete error")
-0362: +             log.exception('%s delete error', self._get_filename(obj, **kwargs))
-0364: -             log.exception(f"Could not delete {path} from Pithos, {ce}")
-0364: +             log.exception('Could not delete %s from Pithos, %s', path, ce)
-0440: -                 log.exception(f'Trouble generating URL for dataset "{path}"')
-0440: +                 log.exception('Trouble generating URL for dataset "%s"', path)
-0441: -                 log.exception(f"Kamaki: {ce}")
-0441: +                 log.exception('Kamaki: %s', ce)
+0358: -                 log.debug(f"On Pithos: delete -r {path}/")
+0358: +                 log.debug('On Pithos: delete -r %s/', path)
+0365: -             log.exception(f"{self._get_filename(obj, **kwargs)} delete error")
+0365: +             log.exception('%s delete error', self._get_filename(obj, **kwargs))
+0367: -             log.exception(f"Could not delete {path} from Pithos, {ce}")
+0367: +             log.exception('Could not delete %s from Pithos, %s', path, ce)
+0446: -                 log.exception(f'Trouble generating URL for dataset "{path}"')
+0446: +                 log.exception('Trouble generating URL for dataset "%s"', path)
+0447: -                 log.exception(f"Kamaki: {ce}")
+0447: +                 log.exception('Kamaki: %s', ce)
 
 ../galaxy/lib/galaxy/workflow/run.py
-0193: -             log.debug(
-0194: -                 f"Workflow invocation [{workflow_invocation.id}] exceeded maximum number of seconds allowed for scheduling [{maximum_duration}], failing."
-0195: -             )
-0193: +             log.debug('Workflow invocation [%s] exceeded maximum number of seconds allowed for scheduling [%s], failing.', workflow_invocation.id, maximum_duration)
-0261: -                 log.debug(f"Workflow step {step.id} of invocation {workflow_invocation.id} invoked {step_timer}")
-0261: +                 log.debug('Workflow step %s of invocation %s invoked %s', step.id, workflow_invocation.id, step_timer)
-0401: -                 log.error(f"{public_message}. State is known for these step ids: {list(step_states.keys())}.")
-0401: +                 log.error('%s. State is known for these step ids: %s.', public_message, list(step_states.keys()))
-0554: -                     log.error(f"{step.log_str()} not found in inputs_step_id {self.inputs_by_step_id}")
-0554: +                     log.error('%s not found in inputs_step_id %s', step.log_str(), self.inputs_by_step_id)
+0192: -             log.debug(
+0193: -                 f"Workflow invocation [{workflow_invocation.id}] exceeded maximum number of seconds allowed for scheduling [{maximum_duration}], failing."
+0194: -             )
+0192: +             log.debug('Workflow invocation [%s] exceeded maximum number of seconds allowed for scheduling [%s], failing.', workflow_invocation.id, maximum_duration)
+0260: -                 log.debug(f"Workflow step {step.id} of invocation {workflow_invocation.id} invoked {step_timer}")
+0260: +                 log.debug('Workflow step %s of invocation %s invoked %s', step.id, workflow_invocation.id, step_timer)
+0398: -                 log.error(f"{public_message}. State is known for these step ids: {list(step_states.keys())}.")
+0398: +                 log.error('%s. State is known for these step ids: %s.', public_message, list(step_states.keys()))
+0547: -                     log.error(f"{step.log_str()} not found in inputs_step_id {self.inputs_by_step_id}")
+0547: +                     log.error('%s not found in inputs_step_id %s', step.log_str(), self.inputs_by_step_id)
 
 ../galaxy/lib/galaxy/workflow/run_request.py
-0505: -         log.info(f"Creating a step_state for step.id {step.id}")
-0505: +         log.info('Creating a step_state for step.id %s', step.id)
+0506: -         log.info(f"Creating a step_state for step.id {step.id}")
+0506: +         log.info('Creating a step_state for step.id %s', step.id)
 
 ../galaxy/lib/galaxy/workflow/scheduling_manager.py
 0193: -             log.info(f"Cannot find workflow schedulers plugin config file '{config_file}', using default scheduler.")
 0193: +             log.info("Cannot find workflow schedulers plugin config file '%s', using default scheduler.", config_file)
 
 ../galaxy/lib/galaxy/workflow/modules.py
-0748: -                         log.error(
-0749: -                             f"Workflow output '{workflow_output['output_name']}' defined, but not listed among data outputs"
-0750: -                         )
-0748: +                         log.error("Workflow output '%s' defined, but not listed among data outputs", workflow_output['output_name'])
-1729: -                     log.info(
-1730: -                         f"Exact tool specified during workflow module creation for [{tool_id}] but couldn't find correct version [{tool_version}]."
-1731: -                     )
-1729: +                     log.info("Exact tool specified during workflow module creation for [%s] but couldn't find correct version [%s].", tool_id, tool_version)
-1815: -             log.warning(f"The tool '{step.tool_id}' is missing. Cannot build workflow module.")
-1815: +             log.warning("The tool '%s' is missing. Cannot build workflow module.", step.tool_id)
-2254: -                 log.warning(f"Failed to use input connections for inputs [{unmatched_input_connections}]")
-2254: +                 log.warning('Failed to use input connections for inputs [%s]', unmatched_input_connections)
+0745: -                         log.error(
+0746: -                             f"Workflow output '{workflow_output['output_name']}' defined, but not listed among data outputs"
+0747: -                         )
+0745: +                         log.error("Workflow output '%s' defined, but not listed among data outputs", workflow_output['output_name'])
+1716: -                     log.info(
+1717: -                         f"Exact tool specified during workflow module creation for [{tool_id}] but couldn't find correct version [{tool_version}]."
+1718: -                     )
+1716: +                     log.info("Exact tool specified during workflow module creation for [%s] but couldn't find correct version [%s].", tool_id, tool_version)
+1802: -             log.warning(f"The tool '{step.tool_id}' is missing. Cannot build workflow module.")
+1802: +             log.warning("The tool '%s' is missing. Cannot build workflow module.", step.tool_id)
+2241: -                 log.warning(f"Failed to use input connections for inputs [{unmatched_input_connections}]")
+2241: +                 log.warning('Failed to use input connections for inputs [%s]', unmatched_input_connections)
 
 ../galaxy/lib/galaxy/workflow/extract.py
 0136: -             log.warning(f"job_id {job_id} not found in job_id2representative_job {summary.job_id2representative_job}")
@@ -747,80 +746,80 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0051: +     log.debug('Loading workflow resource parameter definitions from %s', params_file)
 
 ../galaxy/lib/galaxy/model/tags.py
-0232: -                 log.warning(f"Failed to create tag with name {lc_name}")
-0232: +                 log.warning('Failed to create tag with name %s', lc_name)
+0236: -                 log.warning(f"Failed to create tag with name {lc_name}")
+0236: +                 log.warning('Failed to create tag with name %s', lc_name)
 
 ../galaxy/lib/galaxy/model/metadata.py
-0171: -             log.info(f"Attempted to delete invalid key '{name}' from MetadataCollection")
-0171: +             log.info("Attempted to delete invalid key '%s' from MetadataCollection", name)
-0188: -             log.debug(f"No metadata element with name '{name}' found")
-0188: +             log.debug("No metadata element with name '%s' found", name)
-0217: -             log.debug(f"loading metadata from file for: {dataset.__class__.__name__} {dataset.id}")
-0217: +             log.debug('loading metadata from file for: %s %s', dataset.__class__.__name__, dataset.id)
-0221: -             log.debug(f"loading metadata from dict for: {dataset.__class__.__name__} {dataset.id}")
-0221: +             log.debug('loading metadata from dict for: %s %s', dataset.__class__.__name__, dataset.id)
+0170: -             log.info(f"Attempted to delete invalid key '{name}' from MetadataCollection")
+0170: +             log.info("Attempted to delete invalid key '%s' from MetadataCollection", name)
+0187: -             log.debug(f"No metadata element with name '{name}' found")
+0187: +             log.debug("No metadata element with name '%s' found", name)
+0216: -             log.debug(f"loading metadata from file for: {dataset.__class__.__name__} {dataset.id}")
+0216: +             log.debug('loading metadata from file for: %s %s', dataset.__class__.__name__, dataset.id)
+0220: -             log.debug(f"loading metadata from dict for: {dataset.__class__.__name__} {dataset.id}")
+0220: +             log.debug('loading metadata from dict for: %s %s', dataset.__class__.__name__, dataset.id)
 
 ../galaxy/lib/galaxy/model/security.py
-0388: -                             log.debug("Match on permissions for id %d" % item.library_dataset_id)
-0388: +                             log.debug('Match on permissions for id %d', item.library_dataset_id)
-0391: -                             log.debug(
-0392: -                                 "Error: dataset %d; originally: %s; now: %s"
-0393: -                                 % (item.library_dataset_id, base_result, new_result)
-0394: -                             )
-0391: +                             log.debug('Error: dataset %d; originally: %s; now: %s', item.library_dataset_id, base_result, new_result)
-0396: -                         log.debug(
-0397: -                             "Error: dataset %d: had %d entries, now %d entries"
-0398: -                             % (item.library_dataset_id, len(base_result), len(new_result))
-0399: -                         )
-0396: +                         log.debug('Error: dataset %d: had %d entries, now %d entries', item.library_dataset_id, len(base_result), len(new_result))
-0402: -                 log.debug(f"Exception in test code: {e}")
-0402: +                 log.debug('Exception in test code: %s', e)
-0452: -                     log.debug("Item %d: success" % item.id)
-0452: +                     log.debug('Item %d: success', item.id)
-0454: -                     log.debug("Item %d: fail: original: %s; new: %s" % (item.id, orig_value, ret_allow_action[item.id]))
-0454: +                     log.debug('Item %d: fail: original: %s; new: %s', item.id, orig_value, ret_allow_action[item.id])
-0625: -             log.warning(f"Unknown library item type: {type(item)}")
-0625: +             log.warning('Unknown library item type: %s', type(item))
-1608: -                 log.debug("Allowing access to public dataset with hda: %i." % hda.id)
-1608: +                 log.debug('Allowing access to public dataset with hda: %i.', hda.id)
-1617: -                 log.debug(
-1618: -                     "Denying access to private dataset with hda: %i.  No hdadaa record for this dataset." % hda.id
-1619: -                 )
-1617: +                 log.debug('Denying access to private dataset with hda: %i.  No hdadaa record for this dataset.', hda.id)
-1636: -                 log.debug(
-1637: -                     "Denying access to private dataset with hda: %i.  Remote addr is not a valid server for site: %s."
-1638: -                     % (hda.id, hdadaa.site)
-1639: -                 )
-1636: +                 log.debug('Denying access to private dataset with hda: %i.  Remote addr is not a valid server for site: %s.', hda.id, hdadaa.site)
-1642: -                 log.debug(
-1643: -                     "Denying access to private dataset with hda: %i.  Authorization was granted, but has expired."
-1644: -                     % hda.id
-1645: -                 )
-1642: +                 log.debug('Denying access to private dataset with hda: %i.  Authorization was granted, but has expired.', hda.id)
-1647: -             log.debug("Allowing access to private dataset with hda: %i.  Remote server is: %s." % (hda.id, server))
-1647: +             log.debug('Allowing access to private dataset with hda: %i.  Remote server is: %s.', hda.id, server)
+0385: -                             log.debug("Match on permissions for id %d" % item.library_dataset_id)
+0385: +                             log.debug('Match on permissions for id %d', item.library_dataset_id)
+0388: -                             log.debug(
+0389: -                                 "Error: dataset %d; originally: %s; now: %s"
+0390: -                                 % (item.library_dataset_id, base_result, new_result)
+0391: -                             )
+0388: +                             log.debug('Error: dataset %d; originally: %s; now: %s', item.library_dataset_id, base_result, new_result)
+0393: -                         log.debug(
+0394: -                             "Error: dataset %d: had %d entries, now %d entries"
+0395: -                             % (item.library_dataset_id, len(base_result), len(new_result))
+0396: -                         )
+0393: +                         log.debug('Error: dataset %d: had %d entries, now %d entries', item.library_dataset_id, len(base_result), len(new_result))
+0399: -                 log.debug(f"Exception in test code: {e}")
+0399: +                 log.debug('Exception in test code: %s', e)
+0449: -                     log.debug("Item %d: success" % item.id)
+0449: +                     log.debug('Item %d: success', item.id)
+0451: -                     log.debug("Item %d: fail: original: %s; new: %s" % (item.id, orig_value, ret_allow_action[item.id]))
+0451: +                     log.debug('Item %d: fail: original: %s; new: %s', item.id, orig_value, ret_allow_action[item.id])
+0628: -             log.warning(f"Unknown library item type: {type(item)}")
+0628: +             log.warning('Unknown library item type: %s', type(item))
+1636: -                 log.debug("Allowing access to public dataset with hda: %i." % hda.id)
+1636: +                 log.debug('Allowing access to public dataset with hda: %i.', hda.id)
+1644: -                 log.debug(
+1645: -                     "Denying access to private dataset with hda: %i.  No hdadaa record for this dataset." % hda.id
+1646: -                 )
+1644: +                 log.debug('Denying access to private dataset with hda: %i.  No hdadaa record for this dataset.', hda.id)
+1663: -                 log.debug(
+1664: -                     "Denying access to private dataset with hda: %i.  Remote addr is not a valid server for site: %s."
+1665: -                     % (hda.id, hdadaa.site)
+1666: -                 )
+1663: +                 log.debug('Denying access to private dataset with hda: %i.  Remote addr is not a valid server for site: %s.', hda.id, hdadaa.site)
+1669: -                 log.debug(
+1670: -                     "Denying access to private dataset with hda: %i.  Authorization was granted, but has expired."
+1671: -                     % hda.id
+1672: -                 )
+1669: +                 log.debug('Denying access to private dataset with hda: %i.  Authorization was granted, but has expired.', hda.id)
+1674: -             log.debug("Allowing access to private dataset with hda: %i.  Remote server is: %s." % (hda.id, server))
+1674: +             log.debug('Allowing access to private dataset with hda: %i.  Remote server is: %s.', hda.id, server)
 
 ../galaxy/lib/galaxy/model/__init__.py
-0832: -             log.exception(f"Error getting the password database entry for user {username}")
-0832: +             log.exception('Error getting the password database entry for user %s', username)
-1889: -                         log.debug(
-1890: -                             f"Updating implicit collection uptime_time for job {self.id} failed (this is expected for large collections and not a problem): {unicodify(e)}"
-1891: -                         )
-1889: +                         log.debug('Updating implicit collection uptime_time for job %s failed (this is expected for large collections and not a problem): %s', self.id, unicodify(e))
-2010: -                 log.exception(f"Error trying to determine if job {self.id} is remappable")
-2010: +                 log.exception('Error trying to determine if job %s is remappable', self.id)
-2183: -         log.debug("Task %d: Set external id to %s" % (self.id, task_runner_external_id))
-2183: +         log.debug('Task %d: Set external id to %s', self.id, task_runner_external_id)
-3931: -             log.warning(f"Attempt to get file name of purged dataset {self.id}")
-3931: +             log.warning('Attempt to get file name of purged dataset %s', self.id)
-3942: -                 log.warning(f"Failed to determine file name for dataset {self.id}")
-3942: +                 log.warning('Failed to determine file name for dataset %s', self.id)
-4270: -         log.warning(f"Datatype class not found for extension '{extension}'")
-4270: +         log.warning("Datatype class not found for extension '%s'", extension)
-5839: -             log.warning(f"Attempt to updated parent folder times failed: {ret.rowcount} records updated.")
-5839: +             log.warning('Attempt to updated parent folder times failed: %s records updated.', ret.rowcount)
-6042: -                 log.error(f"Failed to purge associated file ({self.get_file_name()}) from disk: {unicodify(e)}")
-6042: +                 log.error('Failed to purge associated file (%s) from disk: %s', self.get_file_name(), unicodify(e))
+0838: -             log.exception(f"Error getting the password database entry for user {username}")
+0838: +             log.exception('Error getting the password database entry for user %s', username)
+1893: -                         log.debug(
+1894: -                             f"Updating implicit collection uptime_time for job {self.id} failed (this is expected for large collections and not a problem): {unicodify(e)}"
+1895: -                         )
+1893: +                         log.debug('Updating implicit collection uptime_time for job %s failed (this is expected for large collections and not a problem): %s', self.id, unicodify(e))
+2014: -                 log.exception(f"Error trying to determine if job {self.id} is remappable")
+2014: +                 log.exception('Error trying to determine if job %s is remappable', self.id)
+2187: -         log.debug("Task %d: Set external id to %s" % (self.id, task_runner_external_id))
+2187: +         log.debug('Task %d: Set external id to %s', self.id, task_runner_external_id)
+3943: -             log.warning(f"Attempt to get file name of purged dataset {self.id}")
+3943: +             log.warning('Attempt to get file name of purged dataset %s', self.id)
+3954: -                 log.warning(f"Failed to determine file name for dataset {self.id}")
+3954: +                 log.warning('Failed to determine file name for dataset %s', self.id)
+4284: -         log.warning(f"Datatype class not found for extension '{extension}'")
+4284: +         log.warning("Datatype class not found for extension '%s'", extension)
+5848: -             log.warning(f"Attempt to updated parent folder times failed: {ret.rowcount} records updated.")
+5848: +             log.warning('Attempt to updated parent folder times failed: %s records updated.', ret.rowcount)
+6051: -                 log.error(f"Failed to purge associated file ({self.file_name}) from disk: {unicodify(e)}")
+6051: +                 log.error('Failed to purge associated file (%s) from disk: %s', self.file_name, unicodify(e))
 
 ../galaxy/lib/galaxy/model/custom_types.py
 0348: -                         log.warning(f"Refusing to bind metadata key {k} due to size ({sz})")
@@ -865,12 +864,12 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0099: +                         log.debug('Request query: %f(s)\n%s\nParameters: %s', total, statement, parameters)
 
 ../galaxy/lib/galaxy/model/store/__init__.py
-0693: -                                     log.debug(f"Metadata setting failed on {dataset_instance}", exc_info=True)
-0693: +                                     log.debug('Metadata setting failed on %s', dataset_instance, exc_info=True)
-2217: -             log.error(
-2218: -                 f"Dataset [{dataset.id}] does not exists on on object store [{dataset.dataset.object_store_id or 'None'}], while trying to export."
-2219: -             )
-2217: +             log.error('Dataset [%s] does not exists on on object store [%s], while trying to export.', dataset.id, dataset.dataset.object_store_id or 'None')
+0718: -                                     log.debug(f"Metadata setting failed on {dataset_instance}", exc_info=True)
+0718: +                                     log.debug('Metadata setting failed on %s', dataset_instance, exc_info=True)
+2241: -             log.error(
+2242: -                 f"Dataset [{dataset.id}] does not exists on on object store [{dataset.dataset.object_store_id or 'None'}], while trying to export."
+2243: -             )
+2241: +             log.error('Dataset [%s] does not exists on on object store [%s], while trying to export.', dataset.id, dataset.dataset.object_store_id or 'None')
 
 ../galaxy/lib/galaxy/tool_util/output_checker.py
 0142: -                 log.info(f"Job error detected, failing job.{reason}")
@@ -920,7 +919,7 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0359: -                         log.debug(f"Filtering test for {test_reference}, skipping")
 0359: +                         log.debug('Filtering test for %s, skipping', test_reference)
 0364: -             log.info(
-0365: -                 f"Skipping {len(test_references) - len(filtered_test_references)} out of {len(test_references)} tests."
+0365: -                 f"Skipping {len(test_references)-len(filtered_test_references)} out of {len(test_references)} tests."
 0366: -             )
 0364: +             log.info('Skipping %s out of %s tests.', len(test_references) - len(filtered_test_references), len(test_references))
 0401: -         log.debug(f"Reading client config path {client_test_config_path}")
@@ -931,27 +930,27 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0493: +     logger.info('Storing log file in: %s', log_file)
 
 ../galaxy/lib/galaxy/tool_util/parser/xml.py
-0486: -                 log.warning(f"Unknown output tag encountered [{out_child.tag}]")
-0486: +                 log.warning('Unknown output tag encountered [%s]', out_child.tag)
-1029: -                     log.warning(f"Invalid tool exit_code range {code_range} - ignored")
-1029: +                     log.warning('Invalid tool exit_code range %s - ignored', code_range)
-1038: -                         log.warning(f"Invalid range start for tool's exit_code {code_range}: exit_code ignored")
-1038: +                         log.warning("Invalid range start for tool's exit_code %s: exit_code ignored", code_range)
-1047: -                     log.warning(f"Tool exit_code range {code_range} will match on all exit codes")
-1047: +                     log.warning('Tool exit_code range %s will match on all exit codes', code_range)
-1074: -                     log.warning(
-1075: -                         f"Ignoring tool's stdio regex element with attributes {regex_elem.attrib} - "
-1076: -                         "the 'match' attribute must exist"
-1077: -                     )
-1074: +                     log.warning("Ignoring tool's stdio regex element with attributes %s - the 'match' attribute must exist", regex_elem.attrib)
-1106: -                         log.warning(
-1107: -                             "Tool id %s: unable to determine if tool "
-1108: -                             "stream source scanning is output, error, "
-1109: -                             "or both. Defaulting to use both." % self.id
-1110: -                         )
-1106: +                         log.warning('Tool id %s: unable to determine if tool stream source scanning is output, error, or both. Defaulting to use both.', self.id)
-1137: -                     log.debug(f"Tool {self.id}: error level {err_level} did not match log/warning/fatal")
-1137: +                     log.debug('Tool %s: error level %s did not match log/warning/fatal', self.id, err_level)
+0484: -                 log.warning(f"Unknown output tag encountered [{out_child.tag}]")
+0484: +                 log.warning('Unknown output tag encountered [%s]', out_child.tag)
+1027: -                     log.warning(f"Invalid tool exit_code range {code_range} - ignored")
+1027: +                     log.warning('Invalid tool exit_code range %s - ignored', code_range)
+1036: -                         log.warning(f"Invalid range start for tool's exit_code {code_range}: exit_code ignored")
+1036: +                         log.warning("Invalid range start for tool's exit_code %s: exit_code ignored", code_range)
+1045: -                     log.warning(f"Tool exit_code range {code_range} will match on all exit codes")
+1045: +                     log.warning('Tool exit_code range %s will match on all exit codes', code_range)
+1072: -                     log.warning(
+1073: -                         f"Ignoring tool's stdio regex element with attributes {regex_elem.attrib} - "
+1074: -                         "the 'match' attribute must exist"
+1075: -                     )
+1072: +                     log.warning("Ignoring tool's stdio regex element with attributes %s - the 'match' attribute must exist", regex_elem.attrib)
+1104: -                         log.warning(
+1105: -                             "Tool id %s: unable to determine if tool "
+1106: -                             "stream source scanning is output, error, "
+1107: -                             "or both. Defaulting to use both." % self.id
+1108: -                         )
+1104: +                         log.warning('Tool id %s: unable to determine if tool stream source scanning is output, error, or both. Defaulting to use both.', self.id)
+1135: -                     log.debug(f"Tool {self.id}: error level {err_level} did not match log/warning/fatal")
+1135: +                     log.debug('Tool %s: error level %s did not match log/warning/fatal', self.id, err_level)
 
 ../galaxy/lib/galaxy/tool_util/parser/output_actions.py
 0036: -                     log.debug(f"Unknown ToolOutputAction tag specified: {elem.tag}")
@@ -964,24 +963,24 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0298: +             log.debug('Error in FromDataTableOutputActionOption get_value: %s', e)
 
 ../galaxy/lib/galaxy/tool_util/toolbox/base.py
-0309: -         log.info(f"Parsing the tool configuration {config_filename}")
-0309: +         log.info('Parsing the tool configuration %s', config_filename)
-0464: -         log.warning(f"'{filename}' not among installable tool config files ({', '.join(dynamic_tool_conf_paths)})")
-0464: +         log.warning("'%s' not among installable tool config files (%s)", filename, ', '.join(dynamic_tool_conf_paths))
-0482: -             log.debug(f"Appending to tool panel section: {str(tool_section.name)}")
-0482: +             log.debug('Appending to tool panel section: %s', str(tool_section.name))
-0506: -         log.debug(f"Loading new tool panel section: {str(tool_section.name)}")
-0506: +         log.debug('Loading new tool panel section: %s', str(tool_section.name))
-0615: -                     log.debug(f"Loaded workflow: {workflow_id} {workflow.name}")
-0615: +                     log.debug('Loaded workflow: %s %s', workflow_id, workflow.name)
-0625: -                 log.debug(f"Loading section: {section_dict.get('name')}")
-0625: +                 log.debug('Loading section: %s', section_dict.get('name'))
-0637: -                             log.debug(f"Loaded workflow: {workflow_id} {workflow.name}")
-0637: +                             log.debug('Loaded workflow: %s %s', workflow_id, workflow.name)
-0641: -                             log.debug(f"Loaded label: {section_val.text}")
-0641: +                             log.debug('Loaded label: %s', section_val.text)
-1111: -                     log.exception(f"Tool '{config_file}' is not valid:")
-1111: +                     log.exception("Tool '%s' is not valid:", config_file)
+0301: -         log.info(f"Parsing the tool configuration {config_filename}")
+0301: +         log.info('Parsing the tool configuration %s', config_filename)
+0456: -         log.warning(f"'{filename}' not among installable tool config files ({', '.join(dynamic_tool_conf_paths)})")
+0456: +         log.warning("'%s' not among installable tool config files (%s)", filename, ', '.join(dynamic_tool_conf_paths))
+0474: -             log.debug(f"Appending to tool panel section: {str(tool_section.name)}")
+0474: +             log.debug('Appending to tool panel section: %s', str(tool_section.name))
+0498: -         log.debug(f"Loading new tool panel section: {str(tool_section.name)}")
+0498: +         log.debug('Loading new tool panel section: %s', str(tool_section.name))
+0607: -                     log.debug(f"Loaded workflow: {workflow_id} {workflow.name}")
+0607: +                     log.debug('Loaded workflow: %s %s', workflow_id, workflow.name)
+0617: -                 log.debug(f"Loading section: {section_dict.get('name')}")
+0617: +                 log.debug('Loading section: %s', section_dict.get('name'))
+0629: -                             log.debug(f"Loaded workflow: {workflow_id} {workflow.name}")
+0629: +                             log.debug('Loaded workflow: %s %s', workflow_id, workflow.name)
+0633: -                             log.debug(f"Loaded label: {section_val.text}")
+0633: +                             log.debug('Loaded label: %s', section_val.text)
+1103: -                     log.exception(f"Tool '{config_file}' is not valid:")
+1103: +                     log.exception("Tool '%s' is not valid:", config_file)
 
 ../galaxy/lib/galaxy/tool_util/toolbox/views/sources.py
 0034: -                 log.warning(f"Failed to find toolbox view directory {view_directory}")
@@ -1040,10 +1039,10 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0184: +                 log.debug("Conda environment '%s' could not be removed.", env)
 0200: -             log.debug(f"Removing failed conda install of {str(conda_targets)}")
 0200: +             log.debug('Removing failed conda install of %s', str(conda_targets))
-0370: -             log.warning(f"Cannot install dependencies of type '{type}'")
-0370: +             log.warning("Cannot install dependencies of type '%s'", type)
-0390: -             log.debug(f"Removing failed conda install of {name}, version '{version}'")
-0390: +             log.debug("Removing failed conda install of %s, version '%s'", name, version)
+0368: -             log.warning(f"Cannot install dependencies of type '{type}'")
+0368: +             log.warning("Cannot install dependencies of type '%s'", type)
+0388: -             log.debug(f"Removing failed conda install of {name}, version '{version}'")
+0388: +             log.debug("Removing failed conda install of %s, version '%s'", name, version)
 
 ../galaxy/lib/galaxy/tool_util/deps/container_resolvers/mulled.py
 0151: -         log.debug(f"Cached images in path {self.path} at directory mtime {self.__mtime}")
@@ -1107,28 +1106,26 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0430: +                 log.warning("Cannot find index file '%s' for tool data table '%s'", filename, self.name)
 0741: -                 log.warning(f"Cannot find index file '{filename}' for tool data table '{self.name}'")
 0741: +                 log.warning("Cannot find index file '%s' for tool data table '%s'", filename, self.name)
-1226: -             log.warning(f'Error reading DataManagerTool json for "{output_name}": {e}')
-1226: +             log.warning('Error reading DataManagerTool json for "%s": %s', output_name, e)
-1251: -             log.warning(f'No values for data table "{data_table_name}" were returned by "{options.what}".')
-1251: +             log.warning('No values for data table "%s" were returned by "%s".', data_table_name, options.what)
-1263: -             log.error(
-1264: -                 f'Processing by {options.what} returned an unknown data table "{data_table_name}" with new entries "{data_table_values}". These entries will not be created. Please confirm that an entry for "{data_table_name}" exists in your "tool_data_table_conf.xml" file.'
-1265: -             )
-1263: +             log.error('Processing by %s returned an unknown data table "%s" with new entries "%s". These entries will not be created. Please confirm that an entry for "%s" exists in your "tool_data_table_conf.xml" file.', options.what, data_table_name, data_table_values, data_table_name)
-1268: -             log.error(
-1269: -                 f'Processing by {options.what} returned an unsupported data table "{data_table_name}" with type "{type(data_table)}" with new entries "{data_table_values}". These entries will not be created. Please confirm that the data table is of a supported type ({SUPPORTED_DATA_TABLE_TYPES}).'
-1270: -             )
-1268: +             log.error('Processing by %s returned an unsupported data table "%s" with type "%s" with new entries "%s". These entries will not be created. Please confirm that the data table is of a supported type (%s).', options.what, data_table_name, type(data_table), data_table_values, SUPPORTED_DATA_TABLE_TYPES)
-1339: -             log.warning(
-1340: -                 f'Processing by {options.what} returned an undeclared data table "{data_table_name}" with new entries "{data_table_values}". These entries will not be created. Please confirm that an entry for "{data_table_name}" exists in your "{options.target_config_file}" file.'
-1341: -             )
-1339: +             log.warning('Processing by %s returned an undeclared data table "%s" with new entries "%s". These entries will not be created. Please confirm that an entry for "%s" exists in your "%s" file.', options.what, data_table_name, data_table_values, data_table_name, options.target_config_file)
+1224: -             log.warning(f'Error reading DataManagerTool json for "{output_name}": {e}')
+1224: +             log.warning('Error reading DataManagerTool json for "%s": %s', output_name, e)
+1249: -             log.warning(f'No values for data table "{data_table_name}" were returned by "{options.what}".')
+1249: +             log.warning('No values for data table "%s" were returned by "%s".', data_table_name, options.what)
+1261: -             log.error(
+1262: -                 f'Processing by {options.what} returned an unknown data table "{data_table_name}" with new entries "{data_table_values}". These entries will not be created. Please confirm that an entry for "{data_table_name}" exists in your "tool_data_table_conf.xml" file.'
+1263: -             )
+1261: +             log.error('Processing by %s returned an unknown data table "%s" with new entries "%s". These entries will not be created. Please confirm that an entry for "%s" exists in your "tool_data_table_conf.xml" file.', options.what, data_table_name, data_table_values, data_table_name)
+1266: -             log.error(
+1267: -                 f'Processing by {options.what} returned an unsupported data table "{data_table_name}" with type "{type(data_table)}" with new entries "{data_table_values}". These entries will not be created. Please confirm that the data table is of a supported type ({SUPPORTED_DATA_TABLE_TYPES}).'
+1268: -             )
+1266: +             log.error('Processing by %s returned an unsupported data table "%s" with type "%s" with new entries "%s". These entries will not be created. Please confirm that the data table is of a supported type (%s).', options.what, data_table_name, type(data_table), data_table_values, SUPPORTED_DATA_TABLE_TYPES)
+1337: -             log.warning(
+1338: -                 f'Processing by {options.what} returned an undeclared data table "{data_table_name}" with new entries "{data_table_values}". These entries will not be created. Please confirm that an entry for "{data_table_name}" exists in your "{options.target_config_file}" file.'
+1339: -             )
+1337: +             log.warning('Processing by %s returned an undeclared data table "%s" with new entries "%s". These entries will not be created. Please confirm that an entry for "%s" exists in your "%s" file.', options.what, data_table_name, data_table_values, data_table_name, options.target_config_file)
 
 ../galaxy/lib/galaxy/authnz/custos_authnz.py
-0425: -             log.error(f"Failed to load well-known OIDC config URI: {self.config.well_known_oidc_config_uri}")
-0425: +             log.error('Failed to load well-known OIDC config URI: %s', self.config.well_known_oidc_config_uri)
-0437: -             log.error(f"Failed to load well-known OIDC config URI: {self.config.well_known_oidc_config_uri}")
-0437: +             log.error('Failed to load well-known OIDC config URI: %s', self.config.well_known_oidc_config_uri)
+0440: -             log.error(f"Failed to load well-known OIDC config URI: {well_known_uri}")
+0440: +             log.error('Failed to load well-known OIDC config URI: %s', well_known_uri)
 
 ../galaxy/lib/galaxy/authnz/managers.py
 0074: -                     log.error(
@@ -1138,7 +1135,7 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0074: +                     log.error('Expect a node with `Setter` tag, found a node with `%s` tag instead; skipping this node.', child.tag)
 0080: -                     log.error(
 0081: -                         "Could not find the node attributes `Property` and/or `Value` and/or `Type`;"
-0082: -                         f" found these attributes: `{child.attrib}`; skipping this node."
+0082: -                         " found these attributes: `{}`; skipping this node.".format(child.attrib)
 0083: -                     )
 0080: +                     log.error('Could not find the node attributes `Property` and/or `Value` and/or `Type`; found these attributes: `%s`; skipping this node.', child.attrib)
 0117: -                     log.error(
@@ -1172,38 +1169,38 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0538: +         log.info('Writing credentials generated using CloudAuthz with config id `%s` to the following file: `%s`', cloudauthz.id, filename)
 
 ../galaxy/lib/galaxy/celery/tasks.py
-0092: -             log.error(f"Recalculate user disk usage task failed, user {task_user_id} not found")
-0092: +             log.error('Recalculate user disk usage task failed, user %s not found', task_user_id)
-0152: -         log.info(f"Changing datatype is not allowed for {model_class} {dataset_instance.id}")
-0152: +         log.info('Changing datatype is not allowed for %s %s', model_class, dataset_instance.id)
-0193: -         log.info(f"Setting metadata is not allowed for {model_class} {dataset_instance.id}")
-0193: +         log.info('Setting metadata is not allowed for %s %s', model_class, dataset_instance.id)
-0202: -         log.info(f"Setting metadata failed on {model_class} {dataset_instance.id}: {str(e)}")
-0202: +         log.info('Setting metadata failed on %s %s: %s', model_class, dataset_instance.id, str(e))
-0474: -     log.info(
-0475: -         f"Successfully deleted {result.deleted_notifications_count} notifications and {result.deleted_associations_count} associations."
-0476: -     )
-0474: +     log.info('Successfully deleted %s notifications and %s associations.', result.deleted_notifications_count, result.deleted_associations_count)
+0088: -             log.error(f"Recalculate user disk usage task failed, user {user_id} not found")
+0088: +             log.error('Recalculate user disk usage task failed, user %s not found', user_id)
+0143: -         log.info(f"Changing datatype is not allowed for {model_class} {dataset_instance.id}")
+0143: +         log.info('Changing datatype is not allowed for %s %s', model_class, dataset_instance.id)
+0177: -         log.info(f"Setting metadata is not allowed for {model_class} {dataset_instance.id}")
+0177: +         log.info('Setting metadata is not allowed for %s %s', model_class, dataset_instance.id)
+0186: -         log.info(f"Setting metadata failed on {model_class} {dataset_instance.id}: {str(e)}")
+0186: +         log.info('Setting metadata failed on %s %s: %s', model_class, dataset_instance.id, str(e))
+0432: -     log.info(
+0433: -         f"Successfully deleted {result.deleted_notifications_count} notifications and {result.deleted_associations_count} associations."
+0434: -     )
+0432: +     log.info('Successfully deleted %s notifications and %s associations.', result.deleted_notifications_count, result.deleted_associations_count)
 
 ../galaxy/lib/galaxy/celery/__init__.py
-0185: -                 log.warning(f"Celery task execution failed for {desc} {timer}")
-0185: +                 log.warning('Celery task execution failed for %s %s', desc, timer)
+0168: -                 log.warning(f"Celery task execution failed for {desc} {timer}")
+0168: +                 log.warning('Celery task execution failed for %s %s', desc, timer)
 
 ../galaxy/lib/galaxy/tool_shed/util/dependency_display.py
-0294: -             log.debug(f"Exception in build_repository_containers: {str(e)}")
-0294: +             log.debug('Exception in build_repository_containers: %s', str(e))
+0292: -             log.debug(f"Exception in build_repository_containers: {str(e)}")
+0292: +             log.debug('Exception in build_repository_containers: %s', str(e))
 
 ../galaxy/lib/galaxy/tool_shed/util/tool_dependency_util.py
 0233: -             log.debug(f"Removed tool dependency installation directory: {dependency_install_dir}")
 0233: +             log.debug('Removed tool dependency installation directory: %s', dependency_install_dir)
 
 ../galaxy/lib/galaxy/tool_shed/util/shed_util_common.py
-0046: -             log.debug(message % (r.name, r.owner, tool_shed_repository.name, tool_shed_repository.owner))
-0046: +             log.debug(message, r.name, r.owner, tool_shed_repository.name, tool_shed_repository.owner)
+0047: -             log.debug(message % (r.name, r.owner, tool_shed_repository.name, tool_shed_repository.owner))
+0047: +             log.debug(message, r.name, r.owner, tool_shed_repository.name, tool_shed_repository.owner)
 
 ../galaxy/lib/galaxy/tool_shed/galaxy_install/install_manager.py
-0299: -                     log.debug(f'Creating tool panel section "{new_tool_panel_section_name}" for tool {tool_guid}')
-0299: +                     log.debug('Creating tool panel section "%s" for tool %s', new_tool_panel_section_name, tool_guid)
+0289: -                     log.debug(f'Creating tool panel section "{new_tool_panel_section_name}" for tool {tool_guid}')
+0289: +                     log.debug('Creating tool panel section "%s" for tool %s', new_tool_panel_section_name, tool_guid)
 
 ../galaxy/lib/galaxy/tool_shed/galaxy_install/update_repository_manager.py
 0060: -             log.debug(
@@ -1218,53 +1215,51 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0681: +                 log.debug('Error removing repository installation directory %s: %s', repository_install_dir, e)
 
 ../galaxy/lib/galaxy/tool_shed/galaxy_install/tools/data_manager.py
-0114: -                         log.error(
-0115: -                             "A data manager was defined that does not have an id and will not be installed:\n%s"
-0116: -                             % xml_to_string(elem)
-0117: -                         )
-0114: +                         log.error('A data manager was defined that does not have an id and will not be installed:\n%s', xml_to_string(elem))
-0123: -                         log.error(f"Data manager metadata is not defined properly for '{data_manager_id}'.")
-0123: +                         log.error("Data manager metadata is not defined properly for '%s'.", data_manager_id)
-0127: -                         log.error(f"Data manager guid '{guid}' is not set in metadata for '{data_manager_id}'.")
-0127: +                         log.error("Data manager guid '%s' is not set in metadata for '%s'.", guid, data_manager_id)
-0132: -                         log.error(
-0133: -                             f"Data manager tool guid '{tool_guid}' is not set in metadata for '{data_manager_id}'."
-0134: -                         )
-0132: +                         log.error("Data manager tool guid '%s' is not set in metadata for '%s'.", tool_guid, data_manager_id)
-0154: -                         log.error(f"Data manager metadata is missing 'tool_config_file' for '{data_manager_id}'.")
-0154: +                         log.error("Data manager metadata is missing 'tool_config_file' for '%s'.", data_manager_id)
-0177: -                     log.warning(f"Encountered unexpected element '{elem.tag}':\n{xml_to_string(elem)}")
-0177: +                     log.warning("Encountered unexpected element '%s':\n%s", elem.tag, xml_to_string(elem))
+0113: -                         log.error(
+0114: -                             "A data manager was defined that does not have an id and will not be installed:\n%s"
+0115: -                             % xml_to_string(elem)
+0116: -                         )
+0113: +                         log.error('A data manager was defined that does not have an id and will not be installed:\n%s', xml_to_string(elem))
+0122: -                         log.error(f"Data manager metadata is not defined properly for '{data_manager_id}'.")
+0122: +                         log.error("Data manager metadata is not defined properly for '%s'.", data_manager_id)
+0126: -                         log.error(f"Data manager guid '{guid}' is not set in metadata for '{data_manager_id}'.")
+0126: +                         log.error("Data manager guid '%s' is not set in metadata for '%s'.", guid, data_manager_id)
+0131: -                         log.error(
+0132: -                             f"Data manager tool guid '{tool_guid}' is not set in metadata for '{data_manager_id}'."
+0133: -                         )
+0131: +                         log.error("Data manager tool guid '%s' is not set in metadata for '%s'.", tool_guid, data_manager_id)
+0153: -                         log.error(f"Data manager metadata is missing 'tool_config_file' for '{data_manager_id}'.")
+0153: +                         log.error("Data manager metadata is missing 'tool_config_file' for '%s'.", data_manager_id)
+0176: -                     log.warning(f"Encountered unexpected element '{elem.tag}':\n{xml_to_string(elem)}")
+0176: +                     log.warning("Encountered unexpected element '%s':\n%s", elem.tag, xml_to_string(elem))
 
 ../galaxy/lib/galaxy/tool_shed/galaxy_install/repository_dependencies/repository_dependency_manager.py
-0269: -                                 log.info(
-0270: -                                     f"Reactivating deactivated tool_shed_repository '{str(repository_db_record.name)}'."
-0271: -                                 )
-0269: +                                 log.info("Reactivating deactivated tool_shed_repository '%s'.", str(repository_db_record.name))
+0268: -                                 log.info(
+0269: -                                     f"Reactivating deactivated tool_shed_repository '{str(repository_db_record.name)}'."
+0270: -                                 )
+0268: +                                 log.info("Reactivating deactivated tool_shed_repository '%s'.", str(repository_db_record.name))
 
 ../galaxy/lib/galaxy/tool_shed/galaxy_install/metadata/installed_repository_metadata_manager.py
-0142: -                 log.debug(f"Metadata has been reset on repository {self.repository.name}.")
-0142: +                 log.debug('Metadata has been reset on repository %s.', self.repository.name)
-0144: -                 log.debug(f"Metadata did not need to be reset on repository {self.repository.name}.")
-0144: +                 log.debug('Metadata did not need to be reset on repository %s.', self.repository.name)
-0146: -             log.debug(
-0147: -                 f"Error locating installation directory for repository {self.repository and self.repository.name}."
-0148: -             )
-0146: +             log.debug('Error locating installation directory for repository %s.', self.repository and self.repository.name)
+0134: -                 log.debug(f"Metadata has been reset on repository {self.repository.name}.")
+0134: +                 log.debug('Metadata has been reset on repository %s.', self.repository.name)
+0136: -                 log.debug(f"Metadata did not need to be reset on repository {self.repository.name}.")
+0136: +                 log.debug('Metadata did not need to be reset on repository %s.', self.repository.name)
+0138: -             log.debug(f"Error locating installation directory for repository {self.repository.name}.")
+0138: +             log.debug('Error locating installation directory for repository %s.', self.repository.name)
 
 ../galaxy/lib/galaxy/tool_shed/metadata/metadata_generator.py
-0145: -                 log.error(f'Data Manager entry is missing id attribute in "{data_manager_config_filename}".')
-0145: +                 log.error('Data Manager entry is missing id attribute in "%s".', data_manager_config_filename)
-0156: -                 log.error(f'Data Manager entry is missing tool_file attribute in "{data_manager_config_filename}".')
-0156: +                 log.error('Data Manager entry is missing tool_file attribute in "%s".', data_manager_config_filename)
-0166: -                         log.error(
-0167: -                             f'Data Manager data_table entry is missing name attribute in "{data_manager_config_filename}".'
-0168: -                         )
-0166: +                         log.error('Data Manager data_table entry is missing name attribute in "%s".', data_manager_config_filename)
-0182: -                 log.error(f"Unable to determine tools metadata for '{data_manager_metadata_tool_file}'.")
-0182: +                 log.error("Unable to determine tools metadata for '%s'.", data_manager_metadata_tool_file)
-0194: -             log.debug(f"Loaded Data Manager tool_files: {tool_file}")
-0194: +             log.debug('Loaded Data Manager tool_files: %s', tool_file)
+0173: -                 log.error(f'Data Manager entry is missing id attribute in "{data_manager_config_filename}".')
+0173: +                 log.error('Data Manager entry is missing id attribute in "%s".', data_manager_config_filename)
+0184: -                 log.error(f'Data Manager entry is missing tool_file attribute in "{data_manager_config_filename}".')
+0184: +                 log.error('Data Manager entry is missing tool_file attribute in "%s".', data_manager_config_filename)
+0194: -                         log.error(
+0195: -                             f'Data Manager data_table entry is missing name attribute in "{data_manager_config_filename}".'
+0196: -                         )
+0194: +                         log.error('Data Manager data_table entry is missing name attribute in "%s".', data_manager_config_filename)
+0210: -                 log.error(f"Unable to determine tools metadata for '{data_manager_metadata_tool_file}'.")
+0210: +                 log.error("Unable to determine tools metadata for '%s'.", data_manager_metadata_tool_file)
+0222: -             log.debug(f"Loaded Data Manager tool_files: {tool_file}")
+0222: +             log.debug('Loaded Data Manager tool_files: %s', tool_file)
 
 ../galaxy/lib/galaxy/jobs/dynamic_tool_destination.py
 0822: -             log.debug(f"Verbose value '{str(obj['verbose'])}' is not True or False! Falling back to verbose...")
@@ -1279,8 +1274,8 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 1383: +                 log.debug('Total number of files: %s', str(num_input_datasets))
 
 ../galaxy/lib/galaxy/jobs/handler.py
-0186: -                             log.debug(f"Grabbed {self.grab_type}(s): {', '.join(str(row[0]) for row in rows)}")
-0186: +                             log.debug('Grabbed %s(s): %s', self.grab_type, ', '.join((str(row[0]) for row in rows)))
+0185: -                             log.debug(f"Grabbed {self.grab_type}(s): {', '.join(str(row[0]) for row in rows)}")
+0185: +                             log.debug('Grabbed %s(s): %s', self.grab_type, ', '.join((str(row[0]) for row in rows)))
 0286: -             log.warning(f"({job.id}) Tool '{job.tool_id}' removed from tool config, unable to recover job")
 0286: +             log.warning("(%s) Tool '%s' removed from tool config, unable to recover job", job.id, job.tool_id)
 0292: -             log.debug(f"({job.id}) Job runner assigned but no external ID recorded, adding to the job handler queue")
@@ -1291,48 +1286,48 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0310: -                 f"({job.id}) No job runner assigned and job still in '{job.state}' state, adding to the job handler queue"
 0311: -             )
 0309: +             log.debug("(%s) No job runner assigned and job still in '%s' state, adding to the job handler queue", job.id, job.state)
-0521: -                     log.info("(%d) Job unable to run: one or more inputs in error state" % job.id)
-0521: +                     log.info('(%d) Job unable to run: one or more inputs in error state', job.id)
-0523: -                     log.info("(%d) Job unable to run: one or more inputs deleted" % job.id)
-0523: +                     log.info('(%d) Job unable to run: one or more inputs deleted', job.id)
-0526: -                     log.info("(%d) Job dispatched" % job.id)
-0526: +                     log.info('(%d) Job dispatched', job.id)
-0528: -                     log.info("(%d) Job deleted by user while still queued" % job.id)
-0528: +                     log.info('(%d) Job deleted by user while still queued', job.id)
-0530: -                     log.info("(%d) Job deleted by admin while still queued" % job.id)
-0530: +                     log.info('(%d) Job deleted by admin while still queued', job.id)
-0533: -                         log.info("(%d) User (%s) is over quota: job paused" % (job.id, job.user_id))
-0533: +                         log.info('(%d) User (%s) is over quota: job paused', job.id, job.user_id)
-0536: -                         log.info("(%d) User (%s) is over total walltime limit: job paused" % (job.id, job.user_id))
-0536: +                         log.info('(%d) User (%s) is over total walltime limit: job paused', job.id, job.user_id)
-0546: -                     log.error("(%d) Error checking job readiness" % job.id)
-0546: +                     log.error('(%d) Error checking job readiness', job.id)
-0548: -                     log.error("(%d) Job in unknown state '%s'" % (job.id, job_state))
-0548: +                     log.error("(%d) Job in unknown state '%s'", job.id, job_state)
-0696: -             log.warning(f"({job.id}) Tool '{job.tool_id}' removed from tool config, unable to run job")
-0696: +             log.warning("(%s) Tool '%s' removed from tool config, unable to run job", job.id, job.tool_id)
-0707: -                 log.debug(f"Intentionally failing job with message ({failure_message})")
-0707: +                 log.debug('Intentionally failing job with message (%s)', failure_message)
-0961: -             log.warning(
-0962: -                 f"Job {job.id} is not associated with a user or session so job concurrency limit cannot be checked."
-0963: -             )
-0961: +             log.warning('Job %s is not associated with a user or session so job concurrency limit cannot be checked.', job.id)
-1171: -         log.debug(f"Loaded job runners plugins: {':'.join(self.job_runners.keys())}")
-1171: +         log.debug('Loaded job runners plugins: %s', ':'.join(self.job_runners.keys()))
-1199: -             log.error(f"({job_wrapper.job_id}) Invalid job runner: {runner_name}")
-1199: +             log.error('(%s) Invalid job runner: %s', job_wrapper.job_id, runner_name)
-1213: -             log.debug(f"({job_wrapper.job_id}) Dispatching task {job_wrapper.task_id} to task runner")
-1213: +             log.debug('(%s) Dispatching task %s to task runner', job_wrapper.job_id, job_wrapper.task_id)
-1215: -             log.debug(f"({job_wrapper.job_id}) Dispatching to {job_wrapper.job_destination.runner} runner")
-1215: +             log.debug('(%s) Dispatching to %s runner', job_wrapper.job_id, job_wrapper.job_destination.runner)
-1237: -             log.debug(f"Stopping job {job_wrapper.get_id_tag()} in {runner_name} runner")
-1237: +             log.debug('Stopping job %s in %s runner', job_wrapper.get_id_tag(), runner_name)
-1241: -                 log.error(f"stop(): ({job_wrapper.get_id_tag()}) Invalid job runner: {runner_name}")
-1241: +                 log.error('stop(): (%s) Invalid job runner: %s', job_wrapper.get_id_tag(), runner_name)
-1246: -         log.debug("recovering job %d in %s runner" % (job.id, runner_name))
-1246: +         log.debug('recovering job %d in %s runner', job.id, runner_name)
-1252: -             log.exception(f"recover(): ({job_wrapper.job_id}) {msg}")
-1252: +             log.exception('recover(): (%s) %s', job_wrapper.job_id, msg)
+0537: -                     log.info("(%d) Job unable to run: one or more inputs in error state" % job.id)
+0537: +                     log.info('(%d) Job unable to run: one or more inputs in error state', job.id)
+0539: -                     log.info("(%d) Job unable to run: one or more inputs deleted" % job.id)
+0539: +                     log.info('(%d) Job unable to run: one or more inputs deleted', job.id)
+0542: -                     log.info("(%d) Job dispatched" % job.id)
+0542: +                     log.info('(%d) Job dispatched', job.id)
+0544: -                     log.info("(%d) Job deleted by user while still queued" % job.id)
+0544: +                     log.info('(%d) Job deleted by user while still queued', job.id)
+0546: -                     log.info("(%d) Job deleted by admin while still queued" % job.id)
+0546: +                     log.info('(%d) Job deleted by admin while still queued', job.id)
+0549: -                         log.info("(%d) User (%s) is over quota: job paused" % (job.id, job.user_id))
+0549: +                         log.info('(%d) User (%s) is over quota: job paused', job.id, job.user_id)
+0552: -                         log.info("(%d) User (%s) is over total walltime limit: job paused" % (job.id, job.user_id))
+0552: +                         log.info('(%d) User (%s) is over total walltime limit: job paused', job.id, job.user_id)
+0562: -                     log.error("(%d) Error checking job readiness" % job.id)
+0562: +                     log.error('(%d) Error checking job readiness', job.id)
+0564: -                     log.error("(%d) Job in unknown state '%s'" % (job.id, job_state))
+0564: +                     log.error("(%d) Job in unknown state '%s'", job.id, job_state)
+0712: -             log.warning(f"({job.id}) Tool '{job.tool_id}' removed from tool config, unable to run job")
+0712: +             log.warning("(%s) Tool '%s' removed from tool config, unable to run job", job.id, job.tool_id)
+0723: -                 log.debug(f"Intentionally failing job with message ({failure_message})")
+0723: +                 log.debug('Intentionally failing job with message (%s)', failure_message)
+0979: -             log.warning(
+0980: -                 f"Job {job.id} is not associated with a user or session so job concurrency limit cannot be checked."
+0981: -             )
+0979: +             log.warning('Job %s is not associated with a user or session so job concurrency limit cannot be checked.', job.id)
+1189: -         log.debug(f"Loaded job runners plugins: {':'.join(self.job_runners.keys())}")
+1189: +         log.debug('Loaded job runners plugins: %s', ':'.join(self.job_runners.keys()))
+1217: -             log.error(f"({job_wrapper.job_id}) Invalid job runner: {runner_name}")
+1217: +             log.error('(%s) Invalid job runner: %s', job_wrapper.job_id, runner_name)
+1231: -             log.debug(f"({job_wrapper.job_id}) Dispatching task {job_wrapper.task_id} to task runner")
+1231: +             log.debug('(%s) Dispatching task %s to task runner', job_wrapper.job_id, job_wrapper.task_id)
+1233: -             log.debug(f"({job_wrapper.job_id}) Dispatching to {job_wrapper.job_destination.runner} runner")
+1233: +             log.debug('(%s) Dispatching to %s runner', job_wrapper.job_id, job_wrapper.job_destination.runner)
+1255: -             log.debug(f"Stopping job {job_wrapper.get_id_tag()} in {runner_name} runner")
+1255: +             log.debug('Stopping job %s in %s runner', job_wrapper.get_id_tag(), runner_name)
+1259: -                 log.error(f"stop(): ({job_wrapper.get_id_tag()}) Invalid job runner: {runner_name}")
+1259: +                 log.error('stop(): (%s) Invalid job runner: %s', job_wrapper.get_id_tag(), runner_name)
+1264: -         log.debug("recovering job %d in %s runner" % (job.id, runner_name))
+1264: +         log.debug('recovering job %d in %s runner', job.id, runner_name)
+1270: -             log.exception(f"recover(): ({job_wrapper.job_id}) {msg}")
+1270: +             log.exception('recover(): (%s) %s', job_wrapper.job_id, msg)
 
 ../galaxy/lib/galaxy/jobs/mapper.py
 0222: -                 log.warning(
@@ -1341,73 +1336,73 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0222: +                 log.warning('Ignored user-specified invalid resource parameter request because it failed with %s', str(e))
 
 ../galaxy/lib/galaxy/jobs/__init__.py
-0178: -                 log.error(f"Unknown plugin type: {plugin.get('type')}")
-0178: +                 log.error('Unknown plugin type: %s', plugin.get('type'))
-0379: -                         log.warning(
-0380: -                             "Implicit loading of job_conf.xml has been deprecated and will be removed in a future"
-0381: -                             f" release of Galaxy. Please convert to YAML at {self.app.config.job_config_file} or"
-0382: -                             f" explicitly set `job_config_file` to {job_config_file} to remove this message"
-0383: -                         )
-0379: +                         log.warning('Implicit loading of job_conf.xml has been deprecated and will be removed in a future release of Galaxy. Please convert to YAML at %s or explicitly set `job_config_file` to %s to remove this message', self.app.config.job_config_file, job_config_file)
-0390: -                 log.debug(f"Read job configuration from file: {job_config_file}")
-0390: +                 log.debug('Read job configuration from file: %s', job_config_file)
-0596: -         log.debug(f"Loading job configuration from {self.app.config.job_config_file}")
-0596: +         log.debug('Loading job configuration from %s', self.app.config.job_config_file)
-0883: -                     log.error(f'Runner "{load}" does not contain a list of exported classes in __all__')
-0883: +                     log.error('Runner "%s" does not contain a list of exported classes in __all__', load)
-0890: -                     log.warning(f"A non-class name was found in __all__, ignoring: {id}")
-0890: +                     log.warning('A non-class name was found in __all__, ignoring: %s', id)
-0893: -                     log.warning(
-0894: -                         f"Job runner classes must be subclassed from BaseJobRunner, {id} has bases: {runner_class.__bases__}"
-0895: -                     )
-0893: +                     log.warning('Job runner classes must be subclassed from BaseJobRunner, %s has bases: %s', id, runner_class.__bases__)
-0908: -                 log.debug(f"Loaded job runner '{module_name}:{class_name}' as '{id}'")
-0908: +                 log.debug("Loaded job runner '%s:%s' as '%s'", module_name, class_name, id)
-0946: -                         log.debug(f"Legacy destination with id '{id}', url '{destination.url}' converted, got params:")
-0946: +                         log.debug("Legacy destination with id '%s', url '%s' converted, got params:", id, destination.url)
-0948: -                             log.debug(f"    {k}: {v}")
-0948: +                             log.debug('    %s: %s', k, v)
-0950: -                         log.debug(f"Legacy destination with id '{id}', url '{destination.url}' converted, got params:")
-0950: +                         log.debug("Legacy destination with id '%s', url '%s' converted, got params:", id, destination.url)
-0952: -                     log.warning(
-0953: -                         f"Legacy destination with id '{id}' could not be converted: Unknown runner plugin: {destination.runner}"
-0954: -                     )
-0952: +                     log.warning("Legacy destination with id '%s' could not be converted: Unknown runner plugin: %s", id, destination.runner)
-1141: -         log.warning(f"({self.job_id}) Job runner URLs are deprecated, use destinations instead.")
-1141: +         log.warning('(%s) Job runner URLs are deprecated, use destinations instead.', self.job_id)
-1208: -                 log.info(f"validate... {p.value}")
-1208: +                 log.info('validate... %s', p.value)
-1279: -         log.debug(f"Job wrapper for Job [{job.id}] prepared {prepare_timer}")
-1279: +         log.debug('Job wrapper for Job [%s] prepared %s', job.id, prepare_timer)
-1490: -                 log.exception(f"Error occured while calling tool specific fail actions for job {job.id}")
-1490: +                 log.exception('Error occured while calling tool specific fail actions for job %s', job.id)
-1854: -             log.exception(f"({job.id}) Failed to change ownership of {self.working_directory}, failing")
-1854: +             log.exception('(%s) Failed to change ownership of %s, failing', job.id, self.working_directory)
-1897: -                     log.debug(f"finish(): Moved {dataset_path.false_path} to {dataset_path.real_path}")
-1897: +                     log.debug('finish(): Moved %s to %s', dataset_path.false_path, dataset_path.real_path)
-1929: -                 log.exception(f"Problem generating command line for Job {job.id}.\n{job.traceback}")
-1929: +                 log.exception('Problem generating command line for Job %s.\n%s', job.id, job.traceback)
-1932: -                 log.exception(f"problem importing job outputs. stdout [{job.stdout}] stderr [{job.stderr}]")
-1932: +                 log.exception('problem importing job outputs. stdout [%s] stderr [%s]', job.stdout, job.stderr)
-2017: -             log.exception(f"exec_after_process hook failed for job {self.job_id}")
-2017: +             log.exception('exec_after_process hook failed for job %s', self.job_id)
-2139: -             log.info(
-2140: -                 f"Collecting metrics for {type(has_metrics).__name__} {getattr(has_metrics, 'id', None)} in {job_metrics_directory}"
-2141: -             )
-2139: +             log.info('Collecting metrics for %s %s in %s', type(has_metrics).__name__, getattr(has_metrics, 'id', None), job_metrics_directory)
-2351: -             log.debug(f"found container runtime {container_runtime}")
-2351: +             log.debug('found container runtime %s', container_runtime)
-2359: -             log.error(f"Monitoring interactive tool entry point for job {self.job_id} failed: {exception_string}")
-2359: +             log.error('Monitoring interactive tool entry point for job %s failed: %s', self.job_id, exception_string)
-2552: -         log.debug(f"({job.id}) Persisting job destination (destination id: {job_destination.id})")
-2552: +         log.debug('(%s) Persisting job destination (destination id: %s)', job.id, job_destination.id)
-2643: -         log.error(f"TaskWrapper Failure {message}")
-2643: +         log.error('TaskWrapper Failure %s', message)
-2696: -         log.debug(
-2697: -             "task %s for job %d ended; exit code: %d"
-2698: -             % (self.task_id, self.job_id, tool_exit_code if tool_exit_code is not None else -256)
-2699: -         )
-2696: +         log.debug('task %s for job %d ended; exit code: %d', self.task_id, self.job_id, tool_exit_code if tool_exit_code is not None else -256)
+0173: -                 log.error(f"Unknown plugin type: {plugin.get('type')}")
+0173: +                 log.error('Unknown plugin type: %s', plugin.get('type'))
+0374: -                         log.warning(
+0375: -                             "Implicit loading of job_conf.xml has been deprecated and will be removed in a future"
+0376: -                             f" release of Galaxy. Please convert to YAML at {self.app.config.job_config_file} or"
+0377: -                             f" explicitly set `job_config_file` to {job_config_file} to remove this message"
+0378: -                         )
+0374: +                         log.warning('Implicit loading of job_conf.xml has been deprecated and will be removed in a future release of Galaxy. Please convert to YAML at %s or explicitly set `job_config_file` to %s to remove this message', self.app.config.job_config_file, job_config_file)
+0385: -                 log.debug(f"Read job configuration from file: {job_config_file}")
+0385: +                 log.debug('Read job configuration from file: %s', job_config_file)
+0591: -         log.debug(f"Loading job configuration from {self.app.config.job_config_file}")
+0591: +         log.debug('Loading job configuration from %s', self.app.config.job_config_file)
+0878: -                     log.error(f'Runner "{load}" does not contain a list of exported classes in __all__')
+0878: +                     log.error('Runner "%s" does not contain a list of exported classes in __all__', load)
+0885: -                     log.warning(f"A non-class name was found in __all__, ignoring: {id}")
+0885: +                     log.warning('A non-class name was found in __all__, ignoring: %s', id)
+0888: -                     log.warning(
+0889: -                         f"Job runner classes must be subclassed from BaseJobRunner, {id} has bases: {runner_class.__bases__}"
+0890: -                     )
+0888: +                     log.warning('Job runner classes must be subclassed from BaseJobRunner, %s has bases: %s', id, runner_class.__bases__)
+0903: -                 log.debug(f"Loaded job runner '{module_name}:{class_name}' as '{id}'")
+0903: +                 log.debug("Loaded job runner '%s:%s' as '%s'", module_name, class_name, id)
+0941: -                         log.debug(f"Legacy destination with id '{id}', url '{destination.url}' converted, got params:")
+0941: +                         log.debug("Legacy destination with id '%s', url '%s' converted, got params:", id, destination.url)
+0943: -                             log.debug(f"    {k}: {v}")
+0943: +                             log.debug('    %s: %s', k, v)
+0945: -                         log.debug(f"Legacy destination with id '{id}', url '{destination.url}' converted, got params:")
+0945: +                         log.debug("Legacy destination with id '%s', url '%s' converted, got params:", id, destination.url)
+0947: -                     log.warning(
+0948: -                         f"Legacy destination with id '{id}' could not be converted: Unknown runner plugin: {destination.runner}"
+0949: -                     )
+0947: +                     log.warning("Legacy destination with id '%s' could not be converted: Unknown runner plugin: %s", id, destination.runner)
+1139: -         log.warning(f"({self.job_id}) Job runner URLs are deprecated, use destinations instead.")
+1139: +         log.warning('(%s) Job runner URLs are deprecated, use destinations instead.', self.job_id)
+1206: -                 log.info(f"validate... {p.value}")
+1206: +                 log.info('validate... %s', p.value)
+1275: -         log.debug(f"Job wrapper for Job [{job.id}] prepared {prepare_timer}")
+1275: +         log.debug('Job wrapper for Job [%s] prepared %s', job.id, prepare_timer)
+1486: -                 log.exception(f"Error occured while calling tool specific fail actions for job {job.id}")
+1486: +                 log.exception('Error occured while calling tool specific fail actions for job %s', job.id)
+1850: -             log.exception(f"({job.id}) Failed to change ownership of {self.working_directory}, failing")
+1850: +             log.exception('(%s) Failed to change ownership of %s, failing', job.id, self.working_directory)
+1893: -                     log.debug(f"finish(): Moved {dataset_path.false_path} to {dataset_path.real_path}")
+1893: +                     log.debug('finish(): Moved %s to %s', dataset_path.false_path, dataset_path.real_path)
+1925: -                 log.exception(f"Problem generating command line for Job {job.id}.\n{job.traceback}")
+1925: +                 log.exception('Problem generating command line for Job %s.\n%s', job.id, job.traceback)
+1928: -                 log.exception(f"problem importing job outputs. stdout [{job.stdout}] stderr [{job.stderr}]")
+1928: +                 log.exception('problem importing job outputs. stdout [%s] stderr [%s]', job.stdout, job.stderr)
+2013: -             log.exception(f"exec_after_process hook failed for job {self.job_id}")
+2013: +             log.exception('exec_after_process hook failed for job %s', self.job_id)
+2135: -             log.info(
+2136: -                 f"Collecting metrics for {type(has_metrics).__name__} {getattr(has_metrics, 'id', None)} in {job_metrics_directory}"
+2137: -             )
+2135: +             log.info('Collecting metrics for %s %s in %s', type(has_metrics).__name__, getattr(has_metrics, 'id', None), job_metrics_directory)
+2347: -             log.debug(f"found container runtime {container_runtime}")
+2347: +             log.debug('found container runtime %s', container_runtime)
+2355: -             log.error(f"Monitoring interactive tool entry point for job {self.job_id} failed: {exception_string}")
+2355: +             log.error('Monitoring interactive tool entry point for job %s failed: %s', self.job_id, exception_string)
+2548: -         log.debug(f"({job.id}) Persisting job destination (destination id: {job_destination.id})")
+2548: +         log.debug('(%s) Persisting job destination (destination id: %s)', job.id, job_destination.id)
+2639: -         log.error(f"TaskWrapper Failure {message}")
+2639: +         log.error('TaskWrapper Failure %s', message)
+2692: -         log.debug(
+2693: -             "task %s for job %d ended; exit code: %d"
+2694: -             % (self.task_id, self.job_id, tool_exit_code if tool_exit_code is not None else -256)
+2695: -         )
+2692: +         log.debug('task %s for job %d ended; exit code: %d', self.task_id, self.job_id, tool_exit_code if tool_exit_code is not None else -256)
 
 ../galaxy/lib/galaxy/jobs/command_factory.py
 0209: -     log.info(f"Built script [{local_container_script}] for tool command [{tool_commands}]")
@@ -1466,28 +1461,28 @@ Skipping ../galaxy/lib/galaxy/objectstore/pithos.py 423 log.exception('Trouble c
 0173: +             log.warning("stop_job(): %s: Process group %d was already dead or can't be signaled", job.id, pid)
 
 ../galaxy/lib/galaxy/jobs/runners/__init__.py
-0119: -         log.debug(f"Starting {self.nworkers} {self.runner_name} workers")
-0119: +         log.debug('Starting %s %s workers', self.nworkers, self.runner_name)
-0172: -                     log.exception(f"({job_id}) Unhandled exception calling {name}")
-0172: +                     log.exception('(%s) Unhandled exception calling %s', job_id, name)
-0204: -             log.debug(f"Job [{job_wrapper.job_id}] failed to queue {put_timer}")
-0204: +             log.debug('Job [%s] failed to queue %s', job_wrapper.job_id, put_timer)
-0208: -             log.debug(f"Job [{job_wrapper.job_id}] queued {put_timer}")
-0208: +             log.debug('Job [%s] queued %s', job_wrapper.job_id, put_timer)
-0281: -             log.debug(f"({job_id}) Job deleted by user before it entered the {self.runner_name} queue")
-0281: +             log.debug('(%s) Job deleted by user before it entered the %s queue', job_id, self.runner_name)
-0286: -             log.info(f"({job_id}) Job is in state {job_state}, skipping execution")
-0286: +             log.info('(%s) Job is in state %s, skipping execution', job_id, job_state)
-0478: -             log.debug("execution of external set_meta for job %d finished" % job_wrapper.job_id)
-0478: +             log.debug('execution of external set_meta for job %d finished', job_wrapper.job_id)
-0507: -         log.debug(f"({job_id}) command is: {command_line}")
-0507: +         log.debug('(%s) command is: %s', job_id, command_line)
-0660: -             log.exception(f"({job_id or ''}/{external_job_id or ''}) Job wrapper finish method failed")
-0660: +             log.exception('(%s/%s) Job wrapper finish method failed', job_id or '', external_job_id or '')
-0716: -                 log.debug(f"{prefix} Unable to cleanup {file}: {unicodify(e)}")
-0716: +                 log.debug('%s Unable to cleanup %s: %s', prefix, file, unicodify(e))
-0843: -         log.info(f"{self.runner_name}: Sending stop signal to monitor thread")
-0843: +         log.info('%s: Sending stop signal to monitor thread', self.runner_name)
+0118: -         log.debug(f"Starting {self.nworkers} {self.runner_name} workers")
+0118: +         log.debug('Starting %s %s workers', self.nworkers, self.runner_name)
+0171: -                     log.exception(f"({job_id}) Unhandled exception calling {name}")
+0171: +                     log.exception('(%s) Unhandled exception calling %s', job_id, name)
+0203: -             log.debug(f"Job [{job_wrapper.job_id}] failed to queue {put_timer}")
+0203: +             log.debug('Job [%s] failed to queue %s', job_wrapper.job_id, put_timer)
+0207: -             log.debug(f"Job [{job_wrapper.job_id}] queued {put_timer}")
+0207: +             log.debug('Job [%s] queued %s', job_wrapper.job_id, put_timer)
+0280: -             log.debug(f"({job_id}) Job deleted by user before it entered the {self.runner_name} queue")
+0280: +             log.debug('(%s) Job deleted by user before it entered the %s queue', job_id, self.runner_name)
+0285: -             log.info(f"({job_id}) Job is in state {job_state}, skipping execution")
+0285: +             log.info('(%s) Job is in state %s, skipping execution', job_id, job_state)
+0476: -             log.debug("execution of external set_meta for job %d finished" % job_wrapper.job_id)
+0476: +             log.debug('execution of external set_meta for job %d finished', job_wrapper.job_id)
+0505: -         log.debug(f"({job_id}) command is: {command_line}")
+0505: +         log.debug('(%s) command is: %s', job_id, command_line)
+0658: -             log.exception(f"({job_id or ''}/{external_job_id or ''}) Job wrapper finish method failed")
+0658: +             log.exception('(%s/%s) Job wrapper finish method failed', job_id or '', external_job_id or '')
+0714: -                 log.debug(f"{prefix} Unable to cleanup {file}: {unicodify(e)}")
+0714: +                 log.debug('%s Unable to cleanup %s: %s', prefix, file, unicodify(e))
+0841: -         log.info(f"{self.runner_name}: Sending stop signal to monitor thread")
+0841: +         log.info('%s: Sending stop signal to monitor thread', self.runner_name)
 
 ../galaxy/lib/galaxy/jobs/runners/drmaa.py
 0111: -             log.debug(f"Converted URL '{url}' to destination runner=drmaa, params={params}")
@@ -1677,96 +1672,96 @@ Skipping ../galaxy/lib/galaxy/jobs/runners/aws.py 418 log.debug(msg.format(name=
 0202: +             log.exception('Kubernetes failed to create job, empty name encountered: [%s]', job.obj)
 0229: -         log.debug(f"Configuring entry points and deploying service/ingress for job with ID {ajs.job_id}")
 0229: +         log.debug('Configuring entry points and deploying service/ingress for job with ID %s', ajs.job_id)
-0878: -         log.debug(f"Deleting service/ingress for job with ID {job_wrapper.get_id_tag()}")
-0878: +         log.debug('Deleting service/ingress for job with ID %s', job_wrapper.get_id_tag())
-0907: -             log.debug(f"({job.id}/{job.job_runner_external_id}) Terminated at user's request")
-0907: +             log.debug("(%s/%s) Terminated at user's request", job.id, job.job_runner_external_id)
-0910: -             log.exception(
-0911: -                 "({}/{}) User killed running job, but error encountered during termination: {}".format(
-0912: -                     job.id, job.get_job_runner_external_id(), e
-0913: -                 )
-0914: -             )
-0910: +             log.exception('(%s/%s) User killed running job, but error encountered during termination: %s', job.id, job.get_job_runner_external_id(), e)
-0919: -         log.debug(f"k8s trying to recover job: {job_id}")
-0919: +         log.debug('k8s trying to recover job: %s', job_id)
-0931: -             log.debug(
-0932: -                 "({}/{}) is still in {} state, adding to the runner monitor queue".format(
-0933: -                     job.id, job.job_runner_external_id, job.state
-0934: -                 )
-0935: -             )
-0931: +             log.debug('(%s/%s) is still in %s state, adding to the runner monitor queue', job.id, job.job_runner_external_id, job.state)
-0940: -             log.debug(
-0941: -                 "({}/{}) is still in queued state, adding to the runner monitor queue".format(
-0942: -                     job.id, job.job_runner_external_id
-0943: -                 )
-0944: -             )
-0940: +             log.debug('(%s/%s) is still in queued state, adding to the runner monitor queue', job.id, job.job_runner_external_id)
+0882: -         log.debug(f"Deleting service/ingress for job with ID {job_wrapper.get_id_tag()}")
+0882: +         log.debug('Deleting service/ingress for job with ID %s', job_wrapper.get_id_tag())
+0911: -             log.debug(f"({job.id}/{job.job_runner_external_id}) Terminated at user's request")
+0911: +             log.debug("(%s/%s) Terminated at user's request", job.id, job.job_runner_external_id)
+0914: -             log.exception(
+0915: -                 "({}/{}) User killed running job, but error encountered during termination: {}".format(
+0916: -                     job.id, job.get_job_runner_external_id(), e
+0917: -                 )
+0918: -             )
+0914: +             log.exception('(%s/%s) User killed running job, but error encountered during termination: %s', job.id, job.get_job_runner_external_id(), e)
+0923: -         log.debug(f"k8s trying to recover job: {job_id}")
+0923: +         log.debug('k8s trying to recover job: %s', job_id)
+0935: -             log.debug(
+0936: -                 "({}/{}) is still in {} state, adding to the runner monitor queue".format(
+0937: -                     job.id, job.job_runner_external_id, job.state
+0938: -                 )
+0939: -             )
+0935: +             log.debug('(%s/%s) is still in %s state, adding to the runner monitor queue', job.id, job.job_runner_external_id, job.state)
+0944: -             log.debug(
+0945: -                 "({}/{}) is still in queued state, adding to the runner monitor queue".format(
+0946: -                     job.id, job.job_runner_external_id
+0947: -                 )
+0948: -             )
+0944: +             log.debug('(%s/%s) is still in queued state, adding to the runner monitor queue', job.id, job.job_runner_external_id)
 
 ../galaxy/lib/galaxy/jobs/runners/pulsar.py
-0258: -                 log.info(f"Loading Pulsar app configuration from {pulsar_conf_path}")
-0258: +                 log.info('Loading Pulsar app configuration from %s', pulsar_conf_path)
-0406: -                 log.debug(f"Registering tool_script for Pulsar transfer [{tool_script}]")
-0406: +                 log.debug('Registering tool_script for Pulsar transfer [%s]', tool_script)
-0440: -             log.info(f"Pulsar job submitted with job_id {external_job_id}")
-0440: +             log.info('Pulsar job submitted with job_id %s', external_job_id)
-0570: -                     log.warning(f"Pulsar runner in selected configuration ignores parameter {key}")
-0570: +                     log.warning('Pulsar runner in selected configuration ignores parameter %s', key)
-0714: -                 log.debug("check_pid(): PID %d is dead" % pid)
-0714: +                 log.debug('check_pid(): PID %d is dead', pid)
-0716: -                 log.warning(
-0717: -                     "check_pid(): Got errno %s when attempting to check PID %d: %s"
-0718: -                     % (errno.errorcode[e.errno], pid, e.strerror)
-0719: -                 )
-0716: +                 log.warning('check_pid(): Got errno %s when attempting to check PID %d: %s', errno.errorcode[e.errno], pid, e.strerror)
-0734: -                 log.warning(f"stop_job(): {job.id}: no PID in database for job, unable to stop")
-0734: +                 log.warning('stop_job(): %s: no PID in database for job, unable to stop', job.id)
-0738: -                 log.warning("stop_job(): %s: PID %d was already dead or can't be signaled" % (job.id, pid))
-0738: +                 log.warning("stop_job(): %s: PID %d was already dead or can't be signaled", job.id, pid)
-0744: -                     log.warning(
-0745: -                         "stop_job(): %s: Got errno %s when attempting to signal %d to PID %d: %s"
-0746: -                         % (job.id, errno.errorcode[e.errno], sig, pid, e.strerror)
-0747: -                     )
-0744: +                     log.warning('stop_job(): %s: Got errno %s when attempting to signal %d to PID %d: %s', job.id, errno.errorcode[e.errno], sig, pid, e.strerror)
-0751: -                     log.debug("stop_job(): %s: PID %d successfully killed with signal %d" % (job.id, pid, sig))
-0751: +                     log.debug('stop_job(): %s: PID %d successfully killed with signal %d', job.id, pid, sig)
-0754: -                     log.warning("stop_job(): %s: PID %d refuses to die after signaling TERM/KILL" % (job.id, pid))
-0754: +                     log.warning('stop_job(): %s: PID %d refuses to die after signaling TERM/KILL', job.id, pid)
-0759: -             log.debug(f"Attempt remote Pulsar kill of job with url {pulsar_url} and id {job_id}")
-0759: +             log.debug('Attempt remote Pulsar kill of job with url %s and id %s', pulsar_url, job_id)
-0769: -             log.debug(f"(Pulsar/{job.id}) is still in {state} state, adding to the Pulsar queue")
-0769: +             log.debug('(Pulsar/%s) is still in %s state, adding to the Pulsar queue', job.id, state)
-0841: -         log.info(f"pulsar_version is {pulsar_version}")
-0841: +         log.info('pulsar_version is %s', pulsar_version)
-0986: -             log.exception(f"Failed to update Pulsar job status for job_id ({galaxy_job_id}/{remote_job_id})")
-0986: +             log.exception('Failed to update Pulsar job status for job_id (%s/%s)', galaxy_job_id, remote_job_id)
-1156: -             log.info(f"input_metadata_rewrite is {remote_input_path} from {metadata_val}")
-1156: +             log.info('input_metadata_rewrite is %s from %s', remote_input_path, metadata_val)
+0257: -                 log.info(f"Loading Pulsar app configuration from {pulsar_conf_path}")
+0257: +                 log.info('Loading Pulsar app configuration from %s', pulsar_conf_path)
+0405: -                 log.debug(f"Registering tool_script for Pulsar transfer [{tool_script}]")
+0405: +                 log.debug('Registering tool_script for Pulsar transfer [%s]', tool_script)
+0439: -             log.info(f"Pulsar job submitted with job_id {external_job_id}")
+0439: +             log.info('Pulsar job submitted with job_id %s', external_job_id)
+0569: -                     log.warning(f"Pulsar runner in selected configuration ignores parameter {key}")
+0569: +                     log.warning('Pulsar runner in selected configuration ignores parameter %s', key)
+0713: -                 log.debug("check_pid(): PID %d is dead" % pid)
+0713: +                 log.debug('check_pid(): PID %d is dead', pid)
+0715: -                 log.warning(
+0716: -                     "check_pid(): Got errno %s when attempting to check PID %d: %s"
+0717: -                     % (errno.errorcode[e.errno], pid, e.strerror)
+0718: -                 )
+0715: +                 log.warning('check_pid(): Got errno %s when attempting to check PID %d: %s', errno.errorcode[e.errno], pid, e.strerror)
+0733: -                 log.warning(f"stop_job(): {job.id}: no PID in database for job, unable to stop")
+0733: +                 log.warning('stop_job(): %s: no PID in database for job, unable to stop', job.id)
+0737: -                 log.warning("stop_job(): %s: PID %d was already dead or can't be signaled" % (job.id, pid))
+0737: +                 log.warning("stop_job(): %s: PID %d was already dead or can't be signaled", job.id, pid)
+0743: -                     log.warning(
+0744: -                         "stop_job(): %s: Got errno %s when attempting to signal %d to PID %d: %s"
+0745: -                         % (job.id, errno.errorcode[e.errno], sig, pid, e.strerror)
+0746: -                     )
+0743: +                     log.warning('stop_job(): %s: Got errno %s when attempting to signal %d to PID %d: %s', job.id, errno.errorcode[e.errno], sig, pid, e.strerror)
+0750: -                     log.debug("stop_job(): %s: PID %d successfully killed with signal %d" % (job.id, pid, sig))
+0750: +                     log.debug('stop_job(): %s: PID %d successfully killed with signal %d', job.id, pid, sig)
+0753: -                     log.warning("stop_job(): %s: PID %d refuses to die after signaling TERM/KILL" % (job.id, pid))
+0753: +                     log.warning('stop_job(): %s: PID %d refuses to die after signaling TERM/KILL', job.id, pid)
+0758: -             log.debug(f"Attempt remote Pulsar kill of job with url {pulsar_url} and id {job_id}")
+0758: +             log.debug('Attempt remote Pulsar kill of job with url %s and id %s', pulsar_url, job_id)
+0768: -             log.debug(f"(Pulsar/{job.id}) is still in {state} state, adding to the Pulsar queue")
+0768: +             log.debug('(Pulsar/%s) is still in %s state, adding to the Pulsar queue', job.id, state)
+0840: -         log.info(f"pulsar_version is {pulsar_version}")
+0840: +         log.info('pulsar_version is %s', pulsar_version)
+0987: -             log.exception(f"Failed to update Pulsar job status for job_id ({galaxy_job_id}/{remote_job_id})")
+0987: +             log.exception('Failed to update Pulsar job status for job_id (%s/%s)', galaxy_job_id, remote_job_id)
+1157: -             log.info(f"input_metadata_rewrite is {remote_input_path} from {metadata_val}")
+1157: +             log.info('input_metadata_rewrite is %s from %s', remote_input_path, metadata_val)
 
 ../galaxy/lib/galaxy/jobs/runners/godocker.py
 0161: -             log.debug(f"Starting queue_job for job {job_id}")
 0161: +             log.debug('Starting queue_job for job %s', job_id)
 0189: -         log.debug(f"Job ID: {str(job_state.job_id)} Job Status: {str(job_status_god['status']['primary'])}")
 0189: +         log.debug('Job ID: %s Job Status: %s', str(job_state.job_id), str(job_status_god['status']['primary']))
-0241: -         log.debug(f"STOP JOB EXECUTION OF JOB ID: {str(job_id)}")
-0241: +         log.debug('STOP JOB EXECUTION OF JOB ID: %s', str(job_id))
-0263: -             log.debug(
-0264: -                 f"({job.id}/{job.get_job_runner_external_id()}) is still in {job.state} state, adding to the god queue"
-0265: -             )
-0263: +             log.debug('(%s/%s) is still in %s state, adding to the god queue', job.id, job.get_job_runner_external_id(), job.state)
-0271: -             log.debug(
-0272: -                 f"({job.id}/{job.get_job_runner_external_id()}) is still in god queued state, adding to the god queue"
-0273: -             )
-0271: +             log.debug('(%s/%s) is still in god queued state, adding to the god queue', job.id, job.get_job_runner_external_id())
-0312: -                 log.debug(f"CREATE OUTPUT FILE: {job_state.output_file}")
-0312: +                 log.debug('CREATE OUTPUT FILE: %s', job_state.output_file)
-0313: -                 log.debug(f"CREATE ERROR FILE: {job_state.error_file}")
-0313: +                 log.debug('CREATE ERROR FILE: %s', job_state.error_file)
-0314: -                 log.debug(f"CREATE EXIT CODE FILE: {job_state.exit_code_file}")
-0314: +                 log.debug('CREATE EXIT CODE FILE: %s', job_state.exit_code_file)
-0328: -         log.debug(f"GODOCKER LOGIN: {str(login)}")
-0328: +         log.debug('GODOCKER LOGIN: %s', str(login))
-0363: -                 log.error(f"Unable to find docker_image for job {job_wrapper.job_id}, failing.")
-0363: +                 log.error('Unable to find docker_image for job %s, failing.', job_wrapper.job_id)
+0242: -         log.debug(f"STOP JOB EXECUTION OF JOB ID: {str(job_id)}")
+0242: +         log.debug('STOP JOB EXECUTION OF JOB ID: %s', str(job_id))
+0264: -             log.debug(
+0265: -                 f"({job.id}/{job.get_job_runner_external_id()}) is still in {job.state} state, adding to the god queue"
+0266: -             )
+0264: +             log.debug('(%s/%s) is still in %s state, adding to the god queue', job.id, job.get_job_runner_external_id(), job.state)
+0272: -             log.debug(
+0273: -                 f"({job.id}/{job.get_job_runner_external_id()}) is still in god queued state, adding to the god queue"
+0274: -             )
+0272: +             log.debug('(%s/%s) is still in god queued state, adding to the god queue', job.id, job.get_job_runner_external_id())
+0313: -                 log.debug(f"CREATE OUTPUT FILE: {job_state.output_file}")
+0313: +                 log.debug('CREATE OUTPUT FILE: %s', job_state.output_file)
+0314: -                 log.debug(f"CREATE ERROR FILE: {job_state.error_file}")
+0314: +                 log.debug('CREATE ERROR FILE: %s', job_state.error_file)
+0315: -                 log.debug(f"CREATE EXIT CODE FILE: {job_state.exit_code_file}")
+0315: +                 log.debug('CREATE EXIT CODE FILE: %s', job_state.exit_code_file)
+0329: -         log.debug(f"GODOCKER LOGIN: {str(login)}")
+0329: +         log.debug('GODOCKER LOGIN: %s', str(login))
+0364: -                 log.error(f"Unable to find docker_image for job {job_wrapper.job_id}, failing.")
+0364: +                 log.error('Unable to find docker_image for job %s, failing.', job_wrapper.job_id)
 
 ../galaxy/lib/galaxy/jobs/runners/pbs.py
 0116: -             log.debug(f"Set default PBS server to {self.default_pbs_server}")
@@ -1865,10 +1860,128 @@ Skipping ../galaxy/lib/galaxy/jobs/runners/aws.py 418 log.debug(msg.format(name=
 ../galaxy/lib/galaxy/metadata/set_metadata.py
 0141: -                 log.info(f"Key {k} too large for metadata, discarding")
 0141: +                 log.info('Key %s too large for metadata, discarding', k)
-0265: -                     log.warning(f"{error_desc}. {error_extra}")
-0265: +                     log.warning('%s. %s', error_desc, error_extra)
+0265: -                     log.warn(f"{error_desc}. {error_extra}")
+0265: +                     log.warn('%s. %s', error_desc, error_extra)
 
 ../galaxy/lib/galaxy/metadata/__init__.py
 0121: -             log.debug(f"setting metadata externally failed for {dataset.__class__.__name__} {dataset.id}: {rstring}")
 0121: +             log.debug('setting metadata externally failed for %s %s: %s', dataset.__class__.__name__, dataset.id, rstring)
+
+../galaxy/lib/tool_shed/test/base/twilltestcase.py
+1050: -         log.debug(f"Waiting for the installation of repository IDs: {repository_ids}")
+1050: +         log.debug('Waiting for the installation of repository IDs: %s', repository_ids)
+1188: -         log.debug(f"Waiting for the installation of repository IDs: {repository_ids}")
+1188: +         log.debug('Waiting for the installation of repository IDs: %s', repository_ids)
+1272: -             log.debug(f"Setting field {field_name} of form {form_id} to {field_value}.")
+1272: +             log.debug('Setting field %s of form %s to %s.', field_name, form_id, field_value)
+
+../galaxy/lib/tool_shed/test/base/driver.py
+0120: -         log.info(f"Functional tests will be run against {tool_shed_test_host}:{tool_shed_test_port}")
+0120: +         log.info('Functional tests will be run against %s:%s', tool_shed_test_host, tool_shed_test_port)
+0178: -             log.info(f"Galaxy tests will be run against {galaxy_server_wrapper.host}:{galaxy_server_wrapper.port}")
+0178: +             log.info('Galaxy tests will be run against %s:%s', galaxy_server_wrapper.host, galaxy_server_wrapper.port)
+
+../galaxy/lib/tool_shed/util/shed_index.py
+0175: -     log.debug(f"Failed to load tool with path {path}.", exc_info=exc_info)
+0175: +     log.debug('Failed to load tool with path %s.', path, exc_info=exc_info)
+
+../galaxy/lib/tool_shed/util/commit_util.py
+0174: -                 log.exception(f'Problem uncompressing bz2 data "{uploaded_file_name}"')
+0174: +                 log.exception('Problem uncompressing bz2 data "%s"', uploaded_file_name)
+0268: -                 log.exception(f'Problem uncompressing gz data "{uploaded_file_name}"')
+0268: +                 log.exception('Problem uncompressing gz data "%s"', uploaded_file_name)
+
+../galaxy/lib/tool_shed/util/hgweb_config.py
+0081: -             log.debug(
+0082: -                 f"Required file {hgweb_config} does not exist, so creating a new, empty file.  Check your config setting for hgweb_config_dir."
+0083: -             )
+0081: +             log.debug('Required file %s does not exist, so creating a new, empty file.  Check your config setting for hgweb_config_dir.', hgweb_config)
+
+../galaxy/lib/tool_shed/util/shed_util_common.py
+0432: -             log.warning(
+0433: -                 f"Valid folder contains a symlink outside of the repository location. Link found in: {str(full_path)}"
+0434: -             )
+0432: +             log.warning('Valid folder contains a symlink outside of the repository location. Link found in: %s', str(full_path))
+
+../galaxy/lib/tool_shed/webapp/search/tool_search.py
+0070: -                 log.debug(f"searching tools for: #{str(search_term)}")
+0070: +                 log.debug('searching tools for: #%s', str(search_term))
+0071: -                 log.debug(f"total hits: {str(len(hits))}")
+0071: +                 log.debug('total hits: %s', str(len(hits)))
+0072: -                 log.debug(f"scored hits: {str(hits.scored_length())}")
+0072: +                 log.debug('scored hits: %s', str(hits.scored_length()))
+
+../galaxy/lib/tool_shed/webapp/search/repo_search.py
+0085: -         log.debug(f"raw search query: #{str(search_term)}")
+0085: +         log.debug('raw search query: #%s', str(search_term))
+0088: -         log.debug(f"term without filters: #{str(search_term_without_filters)}")
+0088: +         log.debug('term without filters: #%s', str(search_term_without_filters))
+0135: -                     log.debug(f"total hits: {str(len(hits))}")
+0135: +                     log.debug('total hits: %s', str(len(hits)))
+0136: -                     log.debug(f"scored hits: {str(hits.scored_length())}")
+0136: +                     log.debug('scored hits: %s', str(hits.scored_length()))
+0145: -                     log.debug(f"matched terms: {str(hit.matched_terms())}")
+0145: +                     log.debug('matched terms: %s', str(hit.matched_terms()))
+
+../galaxy/lib/tool_shed/webapp/model/migrations/__init__.py
+0079: -                         log.info(f"The version in the database is {db_head}.")
+0079: +                         log.info('The version in the database is %s.', db_head)
+0082: -                     log.info(f"Revision {db_head} does not exist in the script directory.")
+0082: +                     log.info('Revision %s does not exist in the script directory.', db_head)
+0161: -             log.info(f"Your {TOOLSHED} database is up-to-date")
+0161: +             log.info('Your %s database is up-to-date', TOOLSHED)
+0172: -         log.info(f"Creating database for URI [{url}]")
+0172: +         log.info('Creating database for URI [%s]', url)
+
+../galaxy/lib/tool_shed/webapp/api/repository_revisions.py
+0096: -             log.debug(f"Invalid repository_metadata id received: {id}")
+0096: +             log.debug('Invalid repository_metadata id received: %s', id)
+0100: -             log.debug(f"The repository_metadata record with id {id} has no metadata.")
+0100: +             log.debug('The repository_metadata record with id %s has no metadata.', id)
+0168: -             log.debug(f"Cannot locate repository_metadata with id {id}")
+0168: +             log.debug('Cannot locate repository_metadata with id %s', id)
+0193: -             log.debug(f"Cannot locate repository_metadata with id {decoded_repository_metadata_id}")
+0193: +             log.debug('Cannot locate repository_metadata with id %s', decoded_repository_metadata_id)
+
+../galaxy/lib/tool_shed/webapp/api/repositories.py
+0224: -                 log.debug(f"Cannot locate repository {name} owned by {owner}")
+0224: +                 log.debug('Cannot locate repository %s owned by %s', name, owner)
+0384: -                     log.warning(f"Repository {owner}/{name} does not exist, skipping")
+0384: +                     log.warning('Repository %s/%s does not exist, skipping', owner, name)
+0392: -                         log.warning(f"Repository {owner}/{name}/{changehash} does not contain valid tools, skipping")
+0392: +                         log.warning('Repository %s/%s/%s does not contain valid tools, skipping', owner, name, changehash)
+0568: -             log.debug(f"Resetting metadata on repository {repository.name}")
+0568: +             log.debug('Resetting metadata on repository %s', repository.name)
+0696: -             log.debug(f"{start_time}...resetting metadata on repository {repository.name}")
+0696: +             log.debug('%s...resetting metadata on repository %s', start_time, repository.name)
+
+../galaxy/lib/tool_shed/metadata/repository_metadata_manager.py
+0842: -         log.debug(f"Resetting all metadata on repository: {self.repository.name}")
+0842: +         log.debug('Resetting all metadata on repository: %s', self.repository.name)
+
+../galaxy/lib/galaxy_test/driver/driver_util.py
+0545: -         log.info(f"GALAXY_TEST_NO_CLEANUP is on. Temporary files in {tempdir}")
+0545: +         log.info('GALAXY_TEST_NO_CLEANUP is on. Temporary files in %s', tempdir)
+0683: -         log.info(f"{threading.active_count()} threads were active before stopping embedded server")
+0683: +         log.info('%s threads were active before stopping embedded server', threading.active_count())
+0686: -             log.info(f"Shutting down embedded {self.name} Paste server")
+0686: +             log.info('Shutting down embedded %s Paste server', self.name)
+0688: -             log.info(f"Embedded web server {self.name} stopped")
+0688: +             log.info('Embedded web server %s stopped', self.name)
+0691: -             log.info(f"Shutting down embedded {self.name} uvicorn server")
+0691: +             log.info('Shutting down embedded %s uvicorn server', self.name)
+0693: -             log.info(f"Embedded web server {self.name} stopped")
+0693: +             log.info('Embedded web server %s stopped', self.name)
+0701: -             log.info(f"Stopping application {self.name}")
+0701: +             log.info('Stopping application %s', self.name)
+0703: -             log.info(f"Application {self.name} stopped.")
+0703: +             log.info('Application %s stopped.', self.name)
+0706: -         log.info(f"{thread_count} active after stopping embedded server")
+0706: +         log.info('%s active after stopping embedded server', thread_count)
+0818: -     log.debug(f"Embedded uvicorn web server for {name} started at {host}:{port}{url_prefix}")
+0818: +     log.debug('Embedded uvicorn web server for %s started at %s:%s%s', name, host, port, url_prefix)
+0853: -             log.debug(f"After stopping all servers thread {th} is alive.")
+0853: +             log.debug('After stopping all servers thread %s is alive.', th)
+0973: -             log.info(f"Functional tests will be run against test external Galaxy server {self.external_galaxy}")
+0973: +             log.info('Functional tests will be run against test external Galaxy server %s', self.external_galaxy)
 

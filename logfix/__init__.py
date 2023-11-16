@@ -164,15 +164,6 @@ def get_patch(source: str, path: str) -> dict:
                 format_string = ""
                 for v in arg.values:
                     if isinstance(v, ast.FormattedValue):
-                        # The value will consist of a variable name or constant
-                        # and possibly a format specifier
-                        # if isinstance(v.value, ast.Name):
-                        #     args.append(v.value)
-                        # elif isinstance(v, ast.Constant):
-                        #     args.append(v.value)
-                        # else:
-                        #     skip(path, node)
-                        #     continue
                         args.append(v.value)
                         format_string += get_format_spec(v)
                     elif isinstance(v, ast.Constant):

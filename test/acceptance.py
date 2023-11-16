@@ -124,51 +124,8 @@ def collect_name(node: ast.AST):
 
 
 def add_type(attr: ast.AST, mock: dict):
-    # segments = collect_name(attr)
-    # name = segments[0]
     name = get_base_name(attr)
-    # mock[name] = Expando(name)
     update_mock(mock, name)
-
-    # n = 0
-    # segment = segments.pop(0)
-    # if segment not in mock:
-    #     n += 1
-    #     mock[segment] = type(f'_T{n}', (TestBaseClass,), dict())
-    # obj = mock[segment]
-    # while len(segments) > 1:
-    #     segment = segments.pop(0)
-    #     if not hasattr(obj, segment):
-    #         setattr(obj, segment, type(f'_T{n}', (TestBaseClass,), dict()))
-    #         n += 1
-    #     obj = getattr(obj, segment)
-    #
-    # segment = segments.pop()
-    # if 'id' in segment:
-    #     value =  42
-    # else:
-    #     value = segment
-    # setattr(obj, segment, value)
-
-    ## TOO OLD
-    # n = 1
-    # t = type(f'_T{n}', (object,), data)
-    # while len(segments) > 1:
-    #     n += 1
-    #     segment = segments.pop()
-    #     data = dict()
-    #     data[segment] = t
-    #     t = type(f'_T{n}', (object,), data)
-    # key = segments[0]
-    # # mock[key] = t
-    # if key in mock:
-    #     print(f'Adding {t.__name__} to existing {key}')
-    #     obj = mock[key]
-    #     name = [ x for x in t.__dict__.keys()][0]
-    #     setattr(obj, name, t)
-    # else:
-    #     print(f'Adding object {key}')
-    #     mock[key] = t
 
 
 def get_base_name(node: ast.AST) -> str:
@@ -237,7 +194,6 @@ def create_mock(node: ast.AST) -> dict:
     mock['ret_allow_action'] = list()
     mock['exc_info'] = 'exc_info'
     mock['message'] = '%s %s %s %s'
-    # mock['obj'] = Expando()
     # Add variable names used as format string
     mock["INSTANCE_ID_INVALID_MESSAGE"] = "Instance id %s is invalid"
     mock["LOAD_FAILURE_ERROR"] = "Failure loading %s"
@@ -293,26 +249,6 @@ def evaluate(original_statement):
     mock["handler"] = handler
     exec(SETUP + original_statement, mock)
     print(handler.line)
-
-
-def test_create_mock():
-    # statement = "log.debug('Canceling job %d: Task %s returned an error', tw.job_id, tw.task_id)"
-    # statement = "log.debug('Starting queue_job for job %s', job_wrapper.get_id_tag())"
-    # statement = 'log.debug("Starting queue_job for job %s", job_wrapper.get_id_tag())'
-    # statement = 'log.info("About to execute the following sudo command - [%s]", " ".join(full_command))'
-    # statement = 'log.debug("_stop_pid(): %s: PID %d successfully killed with signal %d" % (job_id, pid, sig))'
-    # statement = 'log.warning("_stop_pid(): %s: Got errno %s when attempting to signal %d to PID %d: %s"\n% (job_id, errno.errorcode[e.errno], sig, pid, e.strerror))'
-    # statement = 'log.error(f"DRMAAUniva: job {job_id} was killed by signal {qacct[\'exit_status\'] - 128}")'
-    # statement = 'log.debug("task %s for job %d ended; exit code: %d" % (self.task_id, self.job_id, tool_exit_code if tool_exit_code is not None else -256))'
-    # statement = 'log.debug(f"Message {str(trans.user.id)}")'
-    # log.debug(f"_copy_hda_to_library_folder: {str((from_hda_id, folder_id, ldda_message))}")
-    statement = 'log.info(f"removing all tool tag associations ({str(self.sa_session.scalar(select(func.count(self.app.model.ToolTagAssociation))))})")'
-    evaluate(statement)
-    # statement = get_patch(statement, 'test.py')[1].statement
-    # tree = parse(statement)
-    # mock = create_mock(tree)
-    #
-    # pprint(mock)
 
 
 passed = 0
@@ -378,9 +314,6 @@ def run(directory: str):
     for error in errored:
         code = error[0].rstrip()
         print(ast.unparse(ast.parse(code)) + f"\t# {error[1]}")
-        # print(error[0].rstrip()) #, end=None)
-        # print(error[1])
-        # print()
 
 
 def main():
@@ -392,8 +325,6 @@ def main():
 
     parser.add_argument("directory", help="the directory to scan", nargs="?")
     args = parser.parse_args()
-    # if args.directory is None:
-    #     parser.print_help()
 
     if args.directory is None or len(args.directory) == 0:
         run("../../galaxy/lib/galaxy")
@@ -402,6 +333,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # test_create_mock()
     main()
     sys.exit()

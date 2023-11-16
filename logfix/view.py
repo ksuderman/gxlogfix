@@ -36,7 +36,6 @@ def get_name(node):
         return '+'
     if isinstance(node, ast.Sub):
         return '-'
-    # raise Exception(f'Unable to get name for {ast.unparse(node)}')
     return f'{type(node)} {node}'
 
 def make_label(type: str, value: str) -> str:
@@ -51,8 +50,6 @@ def create_node(G, label: str) -> str:
 
 
 def render_binop(G, node: ast.BinOp) -> str:
-    # binop = get_identifier('binop')
-    # G.node(binop, label=make_label('ast.BinOp', get_name(node.op)))
     binop = create_node(G, make_label('ast.BinOp', get_name(node.op)))
     lhs = render_arg(G, node.left)
     G.edge(binop, lhs)
@@ -60,8 +57,6 @@ def render_binop(G, node: ast.BinOp) -> str:
         rhs = render_arg(G, node.right)
         G.edge(binop, rhs)
     elif isinstance(node.right, ast.Tuple):
-        # tuple = get_identifier('tuple')
-        # G.node(tuple, label='ast.Tuple')
         tuple = create_node(G, 'ast.Tuple')
         G.edge(binop, tuple)
         for arg in node.right.elts:
@@ -81,52 +76,32 @@ def create_node_for(G, node: ast.AST) -> str:
     if isinstance(node, ast.BinOp):
         return render_binop(G, node)
     if isinstance(node, ast.Mod):
-        # return '%'
         return create_node(G, make_label('ast.BinOp', '%'))
     if isinstance(node, ast.Add):
-        # return '+'
         return create_node(G, make_label('ast.BinOp', '+'))
     if isinstance(node, ast.Sub):
         return create_node(G, make_label('ast.BinOp', '-'))
-        # return '-'
+
 
 def render_fstring(G, node: ast.JoinedStr):
-    # fstring = get_identifier('fstring')
-    # G.node(fstring, label='ast.JoinedStr')
     fstring = create_node(G, 'ast.JoinedStr')
     for part in node.values:
         if isinstance(part, ast.Constant):
-            # const = get_identifier('const')
-            # G.node(const, label=make_label('ast.Constant', "'" + part.value + "'"))
             const = create_node(G, make_label('ast.Constant', "'" + part.value + "'"))
             G.edge(fstring, const)
         elif isinstance(part, ast.FormattedValue):
-            # fv = get_identifier('fvalue')
-            # G.node(fv, label='ast.FormattedValue')
             fv = create_node(G, 'ast.FormattedValue')
             G.edge(fstring, fv)
-            # value = get_identifier('value')
-            # G.node(value, label=make_label('ast.Name', part.value.id))
-            # value = create_node(G, make_label('ast.Name', part.value.id))
             value = create_node_for(G, part.value)
             print(f"Created node {value}")
             G.edge(fv, value)
-            # spec = get_identifier('format_spec')
             if part.format_spec is None:
                 fspec = 'None'
             else:
-                fspec = get_format_spec(part)
                 if part.format_spec is None:
                     fspec = 'None'
                 else:
                     fspec = part.format_spec.values[0].value
-            # if part.format_spec is None:
-            #     fspec = "%s"
-            # else:
-            #     fspec =  '%' + part.format_spec.values[0].value
-            #     if not fspec.endswith('f') and not fspec.endswith('d'):
-            #         fspec = fspec + 's'
-            # G.node(spec, label=make_label('format_spec', fspec))
             spec = create_node(G, make_label('format_spec', fspec))
             G.edge(fv, spec)
     return fstring
@@ -134,12 +109,8 @@ def render_fstring(G, node: ast.JoinedStr):
 
 def render_arg(G, node: ast.AST) -> str:
     if isinstance(node, ast.Constant):
-        # name = get_identifier('const')
-        # G.node(name, label=make_label('ast.Constant', node.value))
         name = create_node(G, make_label('ast.Constant', node.value))
     elif isinstance(node, ast.Name):
-        # name = get_identifier('name')
-        # G.node(name, label=make_label('ast.Name', node.id))
         name = create_node(G, make_label('ast.Name', node.id))
     elif isinstance(node, ast.Attribute):
         name = get_name(node.attr)
@@ -156,17 +127,11 @@ def render_arg(G, node: ast.AST) -> str:
 
 
 def render_call(G, node: ast.Call) -> str:
-    # call = get_identifier('call')
-    # G.node(call, label='ast.Call')
     call = create_node(G, 'ast.Call')
 
     fname = get_name(node.func)
-    # func = get_identifier('func')
-    # G.node(func, label=make_label('func', fname))
     func = create_node(G, make_label('func', fname))
 
-    # args = get_identifier('args')
-    # G.node(args, label='Args: list')
     args = create_node(G, 'args: list')
     G.edge(call, func)
     G.edge(call, args)
@@ -196,6 +161,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     print(f"Statement: {args.statement}")
     run(args.statement, args.filename)
-    # stmt = 'log.debug(f"Hello {x+sqrt(y):2.3f}")'
-    # run(stmt)
     sys.exit()

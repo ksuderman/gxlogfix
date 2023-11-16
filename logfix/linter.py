@@ -39,9 +39,6 @@ def main():
     args = parser.parse_args()
     if args.directory is None:
         parser.print_help()
-    #
-    # if args.directory is None or len(args.directory) == 0:
-    #     run("../../galaxy/lib/galaxy/jobs/runners")
     else:
         run(args.directory)
 
