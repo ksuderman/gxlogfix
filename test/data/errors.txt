@@ -1,0 +1,25 @@
+log.warning('Inconsistent number of fields (%i vs %i) in %s using separator %r, check line: %r' % (field_count, len(fields), name, self.separator, line))	# %i format: a number is required, not str
+log.error(f'BooleanExpressionEvaluator unable to evaluate expression => {expr}', exc_info=e)	# name 'e' is not defined
+log.debug('Split %s into %i parts...' % (input_file, split_size))	# %i format: a number is required, not str
+log.debug('Split %s into batches of %i records...' % (input_file, batch_size))	# %i format: a number is required, not str
+log.debug('Attemping to split FASTA file %s into chunks of %i bytes' % (input_file, chunk_size))	# %i format: a number is required, not str
+log.debug('Attemping to split FASTA file %s into chunks of %i sequences' % (input_file, chunk_size))	# %i format: a number is required, not str
+log.debug('Validating %d element identifiers for collection creation.' % len(element_identifiers))	# %d format: a number is required, not str
+log.debug('Created collection with %d elements' % len(dataset_collection_instance.collection.elements))	# %d format: a number is required, not str
+log.debug(f'No job found yet for wfi_step {wfi_step}, (step {wfi_step.workflow_step})')	# 'str' object has no attribute 'workflow_step'
+log.trace(f"Workflow Intermediates cleanup attempted, but non-terminal state '{job_to_check.state}' detected for job {job_to_check.id}")	# 'Logger' object has no attribute 'trace'
+log.debug('Error: dataset %d: had %d entries, now %d entries' % (item.library_dataset_id, len(base_result), len(new_result)))	# %d format: a number is required, not str
+log.debug('Item %d: fail: original: %s; new: %s' % (item.id, orig_value, ret_allow_action[item.id]))	# name 'ret_allow_action' is not defined
+log.warning(LOAD_FAILURE_ERROR % path, exc_info=exc_info)	# name 'LOAD_FAILURE_ERROR' is not defined
+log.info("## files diff on '%s' and '%s': lines_diff = %d, found diff = %d, found pdf invalid diff = %d" % (file1, file2, allowed_diff_count, diff_lines, invalid_diff_lines))	# %d format: a number is required, not str
+log.info("## files diff on '%s' and '%s': lines_diff = %d, found diff = %d" % (file1, file2, allowed_diff_count, diff_lines))	# %d format: a number is required, not str
+log.info(f'Total tool test time: {dt.datetime.now() - tool_test_start}')	# unsupported operand type(s) for -: 'int' and 'Expando'
+log.info(f'Skipping {len(test_references) - len(filtered_test_references)} out of {len(test_references)} tests.')	# unsupported operand type(s) for -: 'str' and 'str'
+logger.info(f'Storing log file in: {log_file}')	# name 'logger' is not defined
+log.error(f"Could not execute: '{e.command}'\n{e}")	# 'str' object has no attribute 'command'
+log.debug(message % (r.name, r.owner, tool_shed_repository.name, tool_shed_repository.owner))	# name 'message' is not defined
+log.debug(f"Verbose value '{str(obj['verbose'])}' is not True or False! Falling back to verbose...")	# name 'obj' is not defined
+log.debug(f'Not a file: {str(inp_data[da])}')	# name 'inp_data' is not defined
+log.debug('do_split created %d parts' % len(task_dirs))	# %d format: a number is required, not str
+log.debug('merging only %i out of expected %i files for %s' % (len(output_files), len(task_dirs), output_file_name))	# %i format: a number is required, not str
+log.debug(f"Job ID: {str(job_state.job_id)} Job Status: {str(job_status_god['status']['primary'])}")	# name 'job_status_god' is not defined
